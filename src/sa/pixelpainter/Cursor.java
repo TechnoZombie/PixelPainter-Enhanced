@@ -8,9 +8,10 @@ public class Cursor {
 
     public Cursor(int cursorSize) {
         cursor = new Rectangle(1, 1, cursorSize, cursorSize);
-        cursor.setColor(Color.GRAY);
-        cursor.fill();
+       // cursorFill();
     }
+
+
 
     public int getX() {
         return cursor.getX();
@@ -22,5 +23,10 @@ public class Cursor {
 
     public void translate(int x, int y) {
         cursor.translate(x, y);
+    }
+
+    public void cursorFill(){
+        cursor.setColor(Color.GRAY);
+        cursor.fill();
     }
 }

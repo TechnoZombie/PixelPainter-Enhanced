@@ -13,6 +13,7 @@ import java.util.List;
 public class Coloring implements KeyboardHandler {
 
     private final Movement movement;
+    private final Cursor cursor;
 
     private final List<Rectangle> paintedList = new ArrayList<>();
 
@@ -25,8 +26,9 @@ public class Coloring implements KeyboardHandler {
     int cursorSquareX;
     int cursorSquareY;
 
-    public Coloring(Movement movement) {
+    public Coloring(Movement movement, Cursor cursor) {
         this.movement = movement;
+        this.cursor = cursor;
         Keyboard keyboardColoring = new Keyboard(this);
 
         KeyboardEvent space = new KeyboardEvent();
@@ -87,6 +89,8 @@ public class Coloring implements KeyboardHandler {
                 Canvas.individualSquares[cursorSquareY][cursorSquareX].setColor(chosenColor);
                 Canvas.individualSquares[cursorSquareY][cursorSquareX].fill();
 
+                cursor.cursorFill();
+
             }
 
             case KeyboardEvent.KEY_E -> {
@@ -98,6 +102,8 @@ public class Coloring implements KeyboardHandler {
                     Canvas.individualSquares[cursorSquareY][cursorSquareX].setColor(gridColor);
                     Canvas.individualSquares[cursorSquareY][cursorSquareX].draw();
 
+
+cursor.cursorFill();
                 }
 
             }

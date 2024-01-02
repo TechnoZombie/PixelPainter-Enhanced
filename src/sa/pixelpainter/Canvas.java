@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Canvas {
 
-    public static Cursor cursor;
+    public Cursor cursor;
 
     private static int width;
     private static int height;
@@ -32,8 +32,8 @@ public class Canvas {
         Canvas.height = height;
         Canvas.pixelSize = pixelSize;
         cursor = new Cursor(pixelSize);
-        Movement movement = new Movement();
-        Coloring coloring = new Coloring(movement);
+        Movement movement = new Movement(cursor);
+        Coloring coloring = new Coloring(movement, cursor);
 
         // Creates canvas as a big rectangle
         canvas = new Rectangle(1, 1, Canvas.width, Canvas.height);
@@ -56,6 +56,8 @@ public class Canvas {
             }
         }
 
+        cursor.cursorFill();
+
         userText();
 
 /*        // Print information about individual squares
@@ -75,15 +77,16 @@ public class Canvas {
         System.out.println("+------------------------------+");
         System.out.println("| Use WASD to move the cursor. |");
         System.out.println("+------------------------------+");
-        System.out.println("CHOOSE YOUR COLOR!");
-        System.out.println("KEY 1: BLACK");
-        System.out.println("KEY 2: RED");
-        System.out.println("KEY 3: GREEN");
-        System.out.println("KEY 4: BLUE");
-        System.out.println("KEY 5: YELLOW");
-        System.out.println("KEY Z: SAVE IMAGE");
-        System.out.println("KEY X: LOAD IMAGE");
-        System.out.println("KEY C: CLEAR IMAGE");
-        System.out.println("KEY P: IN TESTING");
+        System.out.println("| CHOOSE YOUR COLOR!           |");
+        System.out.println("| KEY 1: BLACK                 |");
+        System.out.println("| KEY 2: RED                   |");
+        System.out.println("| KEY 3: GREEN                 |");
+        System.out.println("| KEY 4: BLUE                  |");
+        System.out.println("| KEY 5: YELLOW                |");
+        System.out.println("| KEY Z: SAVE IMAGE            |");
+        System.out.println("| KEY X: LOAD IMAGE            |");
+        System.out.println("| KEY C: CLEAR SQUARE          |");
+        System.out.println("| KEY P: IN TESTING            |");
+        System.out.println("+------------------------------+");
     }
 }
