@@ -10,8 +10,6 @@ public class Cursor {
         cursor = new Rectangle(1, 1, cursorSize, cursorSize);
     }
 
-
-
     public void cursorFill(){
         cursor.setColor(Color.GRAY);
         cursor.fill();
