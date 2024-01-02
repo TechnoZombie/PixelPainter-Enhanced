@@ -1,4 +1,4 @@
-package sa.pixelpainter;
+package tz.pixelpainter;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;

@@ -1,4 +1,4 @@
-package sa.pixelpainter;
+package tz.pixelpainter;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
