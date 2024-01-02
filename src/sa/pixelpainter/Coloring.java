@@ -15,6 +15,8 @@ public class Coloring implements KeyboardHandler {
     private final Movement movement;
     private final Cursor cursor;
 
+    private final Canvas canvas;
+
     private final List<Rectangle> paintedList = new ArrayList<>();
 
     public void setChosenColor(Color chosenColor) {
@@ -26,9 +28,10 @@ public class Coloring implements KeyboardHandler {
     int cursorSquareX;
     int cursorSquareY;
 
-    public Coloring(Movement movement, Cursor cursor) {
+    public Coloring(Movement movement, Cursor cursor, Canvas canvas) {
         this.movement = movement;
         this.cursor = cursor;
+        this.canvas = canvas;
         Keyboard keyboardColoring = new Keyboard(this);
 
         KeyboardEvent space = new KeyboardEvent();
@@ -86,10 +89,10 @@ public class Coloring implements KeyboardHandler {
                 cursorSquareX = movement.getCursorIndexX();
                 cursorSquareY = movement.getCursorIndexY();
 
-                Canvas.individualSquares[cursorSquareY][cursorSquareX].setColor(chosenColor);
-                Canvas.individualSquares[cursorSquareY][cursorSquareX].fill();
+                canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].setColor(chosenColor);
+                canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].fill();
 
-                cursor.cursorFill();
+                cursor.cursorReFill();
 
             }
 
@@ -97,16 +100,19 @@ public class Coloring implements KeyboardHandler {
                 cursorSquareX = movement.getCursorIndexX();
                 cursorSquareY = movement.getCursorIndexY();
 
-                if (Canvas.individualSquares[cursorSquareY][cursorSquareX].isFilled()) {
-                    Canvas.individualSquares[cursorSquareY][cursorSquareX].delete();
-                    Canvas.individualSquares[cursorSquareY][cursorSquareX].setColor(gridColor);
-                    Canvas.individualSquares[cursorSquareY][cursorSquareX].draw();
-
-
-cursor.cursorFill();
+                if (canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].isFilled()) {
+                    canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].delete();
+                    canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].setColor(gridColor);
+                    canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].draw();
                 }
 
-            }
+
+
+//attempt to have the cursor showing up after having deleted a square
+                cursor.cursorReFill();
+                }
+
+
 
             case KeyboardEvent.KEY_1 -> {
                 setChosenColor(Color.BLACK);

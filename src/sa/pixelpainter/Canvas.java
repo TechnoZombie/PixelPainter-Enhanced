@@ -7,42 +7,51 @@ public class Canvas {
 
     public Cursor cursor;
 
-    private static int width;
-    private static int height;
-
-    public static int getPixelSize() {
-        return pixelSize;
-    }
-
-    private static int pixelSize;
-    private Rectangle canvas;
-
-    static Rectangle[][] individualSquares;
-
-    public static int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public static int getHeight() {
+    public int getHeight() {
         return height;
     }
 
+    private int width;
+    private int height;
+
+    public Canvas() {
+
+    }
+
+
+    public int getPixelSize() {
+        return pixelSize;
+    }
+
+    private int pixelSize;
+    private Rectangle canvas;
+
+    public Rectangle[][] getIndividualSquares() {
+        return individualSquares;
+    }
+
+    private static Rectangle[][] individualSquares;
+
     public void start(int width, int height, int pixelSize) {
-        Canvas.width = width;
-        Canvas.height = height;
-        Canvas.pixelSize = pixelSize;
+        this.width = width;
+        this.height = height;
+        this.pixelSize = pixelSize;
         cursor = new Cursor(pixelSize);
-        Movement movement = new Movement(cursor);
-        Coloring coloring = new Coloring(movement, cursor);
+        Movement movement = new Movement(cursor, this);
+        Coloring coloring = new Coloring(movement, cursor, this);
 
         // Creates canvas as a big rectangle
-        canvas = new Rectangle(1, 1, Canvas.width, Canvas.height);
+        canvas = new Rectangle(1, 1, this.width, this.height);
         canvas.setColor(Color.BLACK);
         canvas.draw();
 
         // Calculate the number of horizontal squares and vertical lines
-        int numHorizontalSquares = Canvas.width / pixelSize;
-        int numVerticalLines = Canvas.height / pixelSize;
+        int numHorizontalSquares = this.width / pixelSize;
+        int numVerticalLines = this.height / pixelSize;
 
         // Initialize the two-dimensional array with the correct size
         individualSquares = new Rectangle[numVerticalLines][numHorizontalSquares];
@@ -55,7 +64,7 @@ public class Canvas {
                 individualSquares[i][j].draw();
             }
         }
-
+        //Filling the cursor needs to come last so that it over-imposes other elements of the grid
         cursor.cursorFill();
 
         userText();

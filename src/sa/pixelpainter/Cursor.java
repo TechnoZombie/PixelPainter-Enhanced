@@ -8,11 +8,19 @@ public class Cursor {
 
     public Cursor(int cursorSize) {
         cursor = new Rectangle(1, 1, cursorSize, cursorSize);
-       // cursorFill();
     }
 
 
 
+    public void cursorFill(){
+        cursor.setColor(Color.GRAY);
+        cursor.fill();
+    }
+    public void cursorReFill(){
+        cursor.delete();
+        cursor.setColor(Color.GRAY);
+        cursor.fill();
+    }
     public int getX() {
         return cursor.getX();
     }
@@ -25,8 +33,5 @@ public class Cursor {
         cursor.translate(x, y);
     }
 
-    public void cursorFill(){
-        cursor.setColor(Color.GRAY);
-        cursor.fill();
-    }
+
 }

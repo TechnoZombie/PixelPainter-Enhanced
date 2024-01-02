@@ -7,7 +7,8 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Movement implements KeyboardHandler {
 
-    private Cursor cursor;
+    private final Cursor cursor;
+    private final Canvas canvas;
 
     public int getCursorIndexX() {
         return cursorIndexX;
@@ -20,8 +21,9 @@ public class Movement implements KeyboardHandler {
     private int cursorIndexX = 0;
     private int cursorIndexY = 0;
 
-    public Movement(Cursor cursor) {
+    public Movement(Cursor cursor, Canvas canvas) {
         this.cursor = cursor;
+        this.canvas = canvas;
         Keyboard keyboardMovement = new Keyboard(this);
 
         KeyboardEvent d = new KeyboardEvent();
@@ -43,7 +45,6 @@ public class Movement implements KeyboardHandler {
         w.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         w.setKey(KeyboardEvent.KEY_W);
         keyboardMovement.addEventListener(w);
-
 
         KeyboardEvent z = new KeyboardEvent();
         z.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -68,31 +69,27 @@ public class Movement implements KeyboardHandler {
             case KeyboardEvent.KEY_W -> {
 
                 if (cursor.getY() > 1) {
-                    cursor.translate(0, -Canvas.getPixelSize());
+                    cursor.translate(0, -canvas.getPixelSize());
                     cursorIndexY--;
-
                 }
             }
             case KeyboardEvent.KEY_A -> {
-                if (cursor.getX() > Canvas.getPixelSize()) {
-                    cursor.translate(-Canvas.getPixelSize(), 0);
+                if (cursor.getX() > canvas.getPixelSize()) {
+                    cursor.translate(-canvas.getPixelSize(), 0);
                     cursorIndexX--;
-
                 }
             }
             case KeyboardEvent.KEY_S -> {
-                if (cursor.getY() < Canvas.getHeight() - Canvas.getPixelSize()) {
-                    cursor.translate(0, Canvas.getPixelSize());
+
+                if (cursor.getY() < canvas.getHeight() - canvas.getPixelSize()) {
+                    cursor.translate(0, canvas.getPixelSize());
                     cursorIndexY++;
-
-
                 }
             }
             case KeyboardEvent.KEY_D -> {
-                if (cursor.getX() < Canvas.getWidth() - Canvas.getPixelSize()) {
-                    cursor.translate(Canvas.getPixelSize(), 0);
+                if (cursor.getX() < canvas.getWidth() - canvas.getPixelSize()) {
+                    cursor.translate(canvas.getPixelSize(), 0);
                     cursorIndexX++;
-
                 }
             }
         }
