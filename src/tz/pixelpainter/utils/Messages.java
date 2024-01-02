@@ -16,8 +16,8 @@ public class Messages {
         System.out.println("| KEY 5: YELLOW                |");
         System.out.println("| KEY Z: SAVE IMAGE            |");
         System.out.println("| KEY X: LOAD IMAGE            |");
-        System.out.println("| KEY C: CLEAR SQUARE          |");
-        System.out.println("| KEY P: not in use            |");
+        System.out.println("| KEY C: EXPORT IMAGE          |");
+        System.out.println("| KEY E: ERASE SQUARE          |");
         System.out.println("+------------------------------+");
     }
 }

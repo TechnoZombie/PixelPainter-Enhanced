@@ -116,6 +116,8 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_E -> coloring.erase();
 
+            case KeyboardEvent.KEY_C -> {/*to export image as png or jpg or wtv */ }
+
             case KeyboardEvent.KEY_1 -> coloring.colorBlack();
 
             case KeyboardEvent.KEY_2 -> coloring.colorRed();
@@ -126,15 +128,12 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_5 -> coloring.colorYellow();
 
-            case KeyboardEvent.KEY_Z -> {
-                //to save image
-            }
+            case KeyboardEvent.KEY_Z -> {/*to save image*/ }
 
-            case KeyboardEvent.KEY_X -> {
-                //to load image
+            case KeyboardEvent.KEY_X -> { /* to load image */ }
             }
         }
-    }
+
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
