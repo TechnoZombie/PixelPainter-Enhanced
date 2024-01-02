@@ -2,6 +2,7 @@ package tz.pixelpainter;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import tz.pixelpainter.keyboard.KeyboardController;
 import tz.pixelpainter.utils.Messages;
 
 public class Canvas {
@@ -12,6 +13,10 @@ public class Canvas {
     private int pixelSize;
     private Rectangle canvas;
     private Rectangle[][] individualSquares;
+    private KeyboardController keyboardController;
+    private Messages messages;
+    private Movement movement;
+    private Coloring coloring;
 
     public int getWidth() {
         return width;
@@ -34,9 +39,10 @@ public class Canvas {
         this.height = height;
         this.pixelSize = pixelSize;
         cursor = new Cursor(pixelSize);
-        Movement movement = new Movement(cursor, this);
-        Coloring coloring = new Coloring(movement, cursor, this);
-        Messages messages = new Messages();
+        movement = new Movement(cursor, this);
+        coloring = new Coloring(movement, cursor, this);
+        messages = new Messages();
+        keyboardController = new KeyboardController(movement, coloring);
 
         // Creates canvas as a big rectangle
         canvas = new Rectangle(1, 1, this.width, this.height);
@@ -72,7 +78,5 @@ public class Canvas {
             }
         }*/
     }
-
-
 
 }

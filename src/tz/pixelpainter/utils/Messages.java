@@ -17,7 +17,7 @@ public class Messages {
         System.out.println("| KEY Z: SAVE IMAGE            |");
         System.out.println("| KEY X: LOAD IMAGE            |");
         System.out.println("| KEY C: CLEAR SQUARE          |");
-        System.out.println("| KEY P: IN TESTING            |");
+        System.out.println("| KEY P: not in use            |");
         System.out.println("+------------------------------+");
     }
 }
