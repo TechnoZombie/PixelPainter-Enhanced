@@ -1,9 +1,5 @@
 package tz.pixelpainter;
 
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-
 public class Movement {
 
     private final Cursor cursor;
