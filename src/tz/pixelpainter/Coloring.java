@@ -60,10 +60,23 @@ public class Coloring {
         setChosenColor(Color.BLUE);
     }
 
+    public void colorCyan() {
+        setChosenColor(Color.CYAN);
+    }
+
     public void colorYellow() {
         setChosenColor(Color.YELLOW);
     }
+    public void colorOrange() {
+        setChosenColor(Color.ORANGE);
+    }
+    public void colorPink() {
+        setChosenColor(Color.PINK);
+    }
 
+    public void colorMagenta() {
+        setChosenColor(Color.MAGENTA);
+    }
 
 }
 

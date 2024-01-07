@@ -3,19 +3,20 @@ package tz.pixelpainter.utils;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.Canvas;
+
 import java.io.*;
 
 public class FileManager {
 
     private final Canvas canvas;
     private Rectangle[][] individualSquaresToSave;
-    private Messages messages;
+    private final Messages messages;
 
     public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages) {
         this.individualSquaresToSave = individualSquaresToSave;
         this.canvas = canvas;
         this.messages = messages;
-      }
+    }
 
     public void saveFile() {
 
@@ -30,10 +31,13 @@ public class FileManager {
                 for (int j = 0; j < numHorizontalSquares; j++) {
                     if (individualSquaresToSave[i][j].isFilled()) {
                         Color squareColor = individualSquaresToSave[i][j].getColor();
+
+
                         int red = squareColor.getRed();
                         int green = squareColor.getGreen();
                         int blue = squareColor.getBlue();
-                        writer.write(individualSquaresToSave[i][j] + "|");
+
+                        writer.write(individualSquaresToSave[i][j] + "RGB:");
                         writer.write(red + ",");
                         writer.write(green + ",");
                         writer.write(blue + "\n");
@@ -47,7 +51,7 @@ public class FileManager {
 
     }
 
-    // Print information about individual painted squares
+    // Print information about individual painted squares by pressing key I
     public void getInfo() {
         int numVerticalLines = canvas.getNumVerticalLines();
         int numHorizontalSquares = canvas.getNumHorizontalSquares();
@@ -57,8 +61,7 @@ public class FileManager {
             for (int j = 0; j < numHorizontalSquares; j++) {
                 if (individualSquares[i][j].isFilled()) {
                     Rectangle square = individualSquares[i][j];
-                    System.out.println("X: " + square.getX() + ", Y: " + square.getY() +
-                            ", Color: " + square.getColor());
+                    System.out.println("X: " + square.getX() + ", Y: " + square.getY() + ", Color: " + square.getColor());
                 }
             }
 

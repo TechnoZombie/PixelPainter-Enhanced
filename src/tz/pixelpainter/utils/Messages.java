@@ -6,7 +6,7 @@ public class Messages {
 
     public void userText() {
         System.out.println(
-                        "+------------------------------+\n" +
+                "+------------------------------+\n" +
                         "| Welcome to PixelPainter!     |\n" +
                         "+------------------------------+\n" +
                         "| Use WASD to move the cursor. |\n" +
@@ -18,7 +18,11 @@ public class Messages {
                         "| KEY 2: RED                   |\n" +
                         "| KEY 3: GREEN                 |\n" +
                         "| KEY 4: BLUE                  |\n" +
-                        "| KEY 5: YELLOW                |\n" +
+                        "| KEY 5: CYAN                  |\n" +
+                        "| KEY 6: YELLOW                |\n" +
+                        "| KEY 7: ORANGE                |\n" +
+                        "| KEY 8: PINK                  |\n" +
+                        "| KEY 9: MAGENTA               |\n" +
                         "+------------------------------+\n" +
                         "| FILE:                        |\n" +
                         "| KEY Z: SAVE IMAGE            |\n" +
@@ -29,15 +33,15 @@ public class Messages {
 
     }
 
-    public void imageSaved(){
+    public void imageSaved() {
         System.out.println("IMAGE SAVED!");
     }
 
-    public void imageLoaded(){
+    public void imageLoaded() {
         System.out.println("IMAGE LOADED!");
     }
 
-    public void areYouSure(){
+    public void areYouSure() {
         System.out.println("ARE YOU SURE? Y/N");
     }
 }
