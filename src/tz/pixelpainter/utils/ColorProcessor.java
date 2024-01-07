@@ -4,17 +4,29 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 //CONSIDER USEFULNESS OF THIS CLASS. COULD BE FOR DELETION
 
-public class ColorProcessor{
+public class ColorProcessor {
 
-    private Color squareColor;
     public ColorProcessor() {
     }
 
-    public void decodeColor(Color squareColor){
-        this.squareColor = squareColor;
+    public String decodeColor(Color squareColor) {
         int red = squareColor.getRed();
         int green = squareColor.getGreen();
         int blue = squareColor.getBlue();
 
+        String colorString = red + ", " + green + ", " + blue;
+
+        switch (colorString) {
+            case "0, 0, 0":
+                System.out.println("BLACK");
+                return "BLACK";
+
+
+            case "255, 0, 0":
+                System.out.println("RED");
+                return "RED";
+        }
+
+        return "ERROR: UNKNOWN COLOR!";
     }
 }

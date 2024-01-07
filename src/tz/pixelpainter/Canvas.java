@@ -6,6 +6,8 @@ import tz.pixelpainter.keyboard.KeyboardController;
 import tz.pixelpainter.utils.FileManager;
 import tz.pixelpainter.utils.Messages;
 
+import javax.swing.*;
+
 public class Canvas {
 
     public Cursor cursor;
@@ -46,7 +48,12 @@ public class Canvas {
         return numVerticalLines;
     }
 
+
+
+
     public void start(int width, int height, int pixelSize) {
+
+
         this.width = width;
         this.height = height;
         this.pixelSize = pixelSize;
@@ -80,7 +87,4 @@ public class Canvas {
         messages.userText();
 
     }
-
-
-
 }

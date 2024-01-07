@@ -32,6 +32,8 @@ public class FileManager {
                     if (individualSquaresToSave[i][j].isFilled()) {
                         Color squareColor = individualSquaresToSave[i][j].getColor();
 
+                        ColorProcessor processor = new ColorProcessor();
+                        processor.decodeColor(individualSquaresToSave[i][j].getColor());
 
                         int red = squareColor.getRed();
                         int green = squareColor.getGreen();
