@@ -1,5 +1,7 @@
 package tz.pixelpainter.utils;
 
+import javax.sound.midi.Soundbank;
+
 public class Messages {
 
     public void userText() {
@@ -21,5 +23,9 @@ public class Messages {
         System.out.println("| KEY X: LOAD IMAGE            |");
         System.out.println("| KEY C: EXPORT IMAGE          |");
         System.out.println("+------------------------------+");
+    }
+
+    public void imageSaved(){
+        System.out.println("IMAGE SAVED!");
     }
 }

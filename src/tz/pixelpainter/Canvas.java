@@ -3,6 +3,7 @@ package tz.pixelpainter;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.keyboard.KeyboardController;
+import tz.pixelpainter.utils.FileManager;
 import tz.pixelpainter.utils.Messages;
 
 public class Canvas {
@@ -13,7 +14,19 @@ public class Canvas {
     private int pixelSize;
     private Rectangle canvas;
     private Rectangle[][] individualSquares;
+    private FileManager fileManager;
     private KeyboardController keyboardController;
+
+    public int getNumHorizontalSquares() {
+        return numHorizontalSquares;
+    }
+
+    public int getNumVerticalLines() {
+        return numVerticalLines;
+    }
+
+    private int numHorizontalSquares;
+    private int numVerticalLines;
     private Messages messages;
     private Movement movement;
     private Coloring coloring;
@@ -42,16 +55,12 @@ public class Canvas {
         movement = new Movement(cursor, this);
         coloring = new Coloring(movement, cursor, this);
         messages = new Messages();
-        keyboardController = new KeyboardController(movement, coloring);
-
-        // Creates canvas as a big rectangle
-        canvas = new Rectangle(1, 1, this.width, this.height);
-        canvas.setColor(Color.BLACK);
-        canvas.draw();
+        fileManager = new FileManager(this, individualSquares, messages);
+        keyboardController = new KeyboardController(movement, coloring, fileManager);
 
         // Calculate the number of horizontal squares and vertical lines
-        int numHorizontalSquares = this.width / pixelSize;
-        int numVerticalLines = this.height / pixelSize;
+        numHorizontalSquares = this.width / pixelSize;
+        numVerticalLines = this.height / pixelSize;
 
         // Initialize the two-dimensional array with the correct size
         individualSquares = new Rectangle[numVerticalLines][numHorizontalSquares];
@@ -62,6 +71,7 @@ public class Canvas {
                 individualSquares[i][j] = new Rectangle(1 + (j * pixelSize), 1 + (i * pixelSize), pixelSize, pixelSize);
                 individualSquares[i][j].setColor(Color.BLACK);
                 individualSquares[i][j].draw();
+
             }
         }
         //Filling the cursor needs to come last so that it over-imposes other elements of the grid

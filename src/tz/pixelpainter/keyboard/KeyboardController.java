@@ -6,15 +6,18 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import tz.pixelpainter.Movement;
 import tz.pixelpainter.Coloring;
+import tz.pixelpainter.utils.FileManager;
 
 public class KeyboardController implements KeyboardHandler {
 
     private final Movement movement;
     private final Coloring coloring;
+    private final FileManager fileManager;
 
-    public KeyboardController(Movement movement, Coloring coloring) {
+    public KeyboardController(Movement movement, Coloring coloring, FileManager fileManager) {
         this.movement = movement;
         this.coloring = coloring;
+        this.fileManager = fileManager;
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -128,7 +131,7 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_5 -> coloring.colorYellow();
 
-            case KeyboardEvent.KEY_Z -> {/*to save image*/ }
+            case KeyboardEvent.KEY_Z -> {fileManager.saveFile(); }
 
             case KeyboardEvent.KEY_X -> { /* to load image */ }
             }
