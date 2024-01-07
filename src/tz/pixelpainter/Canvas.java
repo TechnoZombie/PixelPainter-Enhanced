@@ -16,15 +16,6 @@ public class Canvas {
     private Rectangle[][] individualSquares;
     private FileManager fileManager;
     private KeyboardController keyboardController;
-
-    public int getNumHorizontalSquares() {
-        return numHorizontalSquares;
-    }
-
-    public int getNumVerticalLines() {
-        return numVerticalLines;
-    }
-
     private int numHorizontalSquares;
     private int numVerticalLines;
     private Messages messages;
@@ -45,6 +36,14 @@ public class Canvas {
 
     public Rectangle[][] getIndividualSquares() {
         return individualSquares;
+    }
+
+    public int getNumHorizontalSquares() {
+        return numHorizontalSquares;
+    }
+
+    public int getNumVerticalLines() {
+        return numVerticalLines;
     }
 
     public void start(int width, int height, int pixelSize) {

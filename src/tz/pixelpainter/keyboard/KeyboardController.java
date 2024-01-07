@@ -21,86 +21,14 @@ public class KeyboardController implements KeyboardHandler {
 
         Keyboard keyboard = new Keyboard(this);
 
-        KeyboardEvent d = new KeyboardEvent();
-        d.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        d.setKey(KeyboardEvent.KEY_D);
-        keyboard.addEventListener(d);
+        char[] keys = {'D', 'A', 'S', 'W', 'Z', 'X', 'P', ' ', 'E', '1', '2', '3', '4', '5', '6'};
 
-        KeyboardEvent a = new KeyboardEvent();
-        a.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        a.setKey(KeyboardEvent.KEY_A);
-        keyboard.addEventListener(a);
-
-        KeyboardEvent s = new KeyboardEvent();
-        s.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        s.setKey(KeyboardEvent.KEY_S);
-        keyboard.addEventListener(s);
-
-        KeyboardEvent w = new KeyboardEvent();
-        w.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        w.setKey(KeyboardEvent.KEY_W);
-        keyboard.addEventListener(w);
-
-        KeyboardEvent z = new KeyboardEvent();
-        z.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        z.setKey(KeyboardEvent.KEY_Z);
-        keyboard.addEventListener(z);
-
-        KeyboardEvent x = new KeyboardEvent();
-        x.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        x.setKey(KeyboardEvent.KEY_X);
-        keyboard.addEventListener(x);
-
-        KeyboardEvent p = new KeyboardEvent();
-        p.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        p.setKey(KeyboardEvent.KEY_P);
-        keyboard.addEventListener(p);
-
-        KeyboardEvent space = new KeyboardEvent();
-        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        space.setKey(KeyboardEvent.KEY_SPACE);
-        keyboard.addEventListener(space);
-
-        KeyboardEvent space2 = new KeyboardEvent();
-        space2.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        space2.setKey(KeyboardEvent.KEY_SPACE);
-        keyboard.addEventListener(space2);
-
-        KeyboardEvent e = new KeyboardEvent();
-        e.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        e.setKey(KeyboardEvent.KEY_E);
-        keyboard.addEventListener(e);
-
-        KeyboardEvent one = new KeyboardEvent();
-        one.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        one.setKey(KeyboardEvent.KEY_1);
-        keyboard.addEventListener(one);
-
-        KeyboardEvent two = new KeyboardEvent();
-        two.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        two.setKey(KeyboardEvent.KEY_2);
-        keyboard.addEventListener(two);
-
-        KeyboardEvent three = new KeyboardEvent();
-        three.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        three.setKey(KeyboardEvent.KEY_3);
-        keyboard.addEventListener(three);
-
-        KeyboardEvent four = new KeyboardEvent();
-        four.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        four.setKey(KeyboardEvent.KEY_4);
-        keyboard.addEventListener(four);
-
-        KeyboardEvent five = new KeyboardEvent();
-        five.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        five.setKey(KeyboardEvent.KEY_5);
-        keyboard.addEventListener(five);
-
-        KeyboardEvent six = new KeyboardEvent();
-        six.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        six.setKey(KeyboardEvent.KEY_6);
-        keyboard.addEventListener(six);
-
+        for (char key : keys) {
+            KeyboardEvent event = new KeyboardEvent();
+            event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            event.setKey(key);
+            keyboard.addEventListener(event);
+        }
     }
 
     @Override
@@ -131,12 +59,11 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_5 -> coloring.colorYellow();
 
-            case KeyboardEvent.KEY_Z -> {fileManager.saveFile(); }
+            case KeyboardEvent.KEY_Z -> fileManager.saveFile();
 
             case KeyboardEvent.KEY_X -> { /* to load image */ }
             }
         }
-
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
