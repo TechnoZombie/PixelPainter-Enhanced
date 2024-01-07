@@ -1,9 +1,8 @@
 package tz.pixelpainter.utils;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.Canvas;
-
-
 import java.io.*;
 
 public class FileManager {
@@ -16,7 +15,7 @@ public class FileManager {
         this.individualSquaresToSave = individualSquaresToSave;
         this.canvas = canvas;
         this.messages = messages;
-    }
+      }
 
     public void saveFile() {
 
@@ -30,7 +29,14 @@ public class FileManager {
             for (int i = 0; i < numVerticalLines; i++) {
                 for (int j = 0; j < numHorizontalSquares; j++) {
                     if (individualSquaresToSave[i][j].isFilled()) {
-                        writer.write(individualSquaresToSave[i][j] + "\n");
+                        Color squareColor = individualSquaresToSave[i][j].getColor();
+                        int red = squareColor.getRed();
+                        int green = squareColor.getGreen();
+                        int blue = squareColor.getBlue();
+                        writer.write(individualSquaresToSave[i][j] + "|");
+                        writer.write(red + ",");
+                        writer.write(green + ",");
+                        writer.write(blue + "\n");
                     }
                 }
             }
@@ -41,6 +47,25 @@ public class FileManager {
 
     }
 
+    // Print information about individual painted squares
+    public void getInfo() {
+        int numVerticalLines = canvas.getNumVerticalLines();
+        int numHorizontalSquares = canvas.getNumHorizontalSquares();
+        Rectangle[][] individualSquares = canvas.getIndividualSquares();
+
+        for (int i = 0; i < numVerticalLines; i++) {
+            for (int j = 0; j < numHorizontalSquares; j++) {
+                if (individualSquares[i][j].isFilled()) {
+                    Rectangle square = individualSquares[i][j];
+                    System.out.println("X: " + square.getX() + ", Y: " + square.getY() +
+                            ", Color: " + square.getColor());
+                }
+            }
+
+        }
+
+    }
 }
+
 
 

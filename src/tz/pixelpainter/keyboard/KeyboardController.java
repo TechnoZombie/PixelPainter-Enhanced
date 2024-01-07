@@ -21,7 +21,7 @@ public class KeyboardController implements KeyboardHandler {
 
         Keyboard keyboard = new Keyboard(this);
 
-        char[] keys = {'D', 'A', 'S', 'W', 'Z', 'X', 'P', ' ', 'E', '1', '2', '3', '4', '5', '6'};
+        char[] keys = {'D', 'A', 'S', 'W', 'Z', 'X', 'P', ' ', 'E', 'Y', 'N', 'I', '1', '2', '3', '4', '5', '6'};
 
         for (char key : keys) {
             KeyboardEvent event = new KeyboardEvent();
@@ -48,6 +48,12 @@ public class KeyboardController implements KeyboardHandler {
             case KeyboardEvent.KEY_E -> coloring.erase();
 
             case KeyboardEvent.KEY_C -> {/*to export image as png or jpg or wtv */ }
+
+            case KeyboardEvent.KEY_Y -> { /*confirm Yes */ }
+
+            case KeyboardEvent.KEY_N -> { /*confirm No */ }
+
+            case KeyboardEvent.KEY_I -> fileManager.getInfo();
 
             case KeyboardEvent.KEY_1 -> coloring.colorBlack();
 

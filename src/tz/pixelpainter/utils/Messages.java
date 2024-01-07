@@ -6,10 +6,11 @@ public class Messages {
 
     public void userText() {
         System.out.println(
-                "+------------------------------+\n" +
+                        "+------------------------------+\n" +
                         "| Welcome to PixelPainter!     |\n" +
                         "+------------------------------+\n" +
                         "| Use WASD to move the cursor. |\n" +
+                        "| SPACE: Paint                 |\n" +
                         "| KEY E: ERASE SQUARE          |\n" +
                         "+------------------------------+\n" +
                         "| COLOR SELECTION:             |\n" +
@@ -30,5 +31,13 @@ public class Messages {
 
     public void imageSaved(){
         System.out.println("IMAGE SAVED!");
+    }
+
+    public void imageLoaded(){
+        System.out.println("IMAGE LOADED!");
+    }
+
+    public void areYouSure(){
+        System.out.println("ARE YOU SURE? Y/N");
     }
 }

@@ -73,19 +73,14 @@ public class Canvas {
 
             }
         }
+
         //Filling the cursor needs to come last so that it over-imposes other elements of the grid
         cursor.cursorFill();
 
         messages.userText();
 
-/*        // Print information about individual squares
-        for (int i = 0; i < numVerticalLines; i++) {
-            for (int j = 0; j < numHorizontalSquares; j++) {
-                Rectangle square = individualSquares[i][j];
-                System.out.println("X: " + square.getX() + ", Y: " + square.getY() +
-                        ", Color: " + square.getColor());
-            }
-        }*/
     }
+
+
 
 }
