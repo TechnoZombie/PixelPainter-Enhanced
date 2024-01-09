@@ -21,7 +21,7 @@ public class KeyboardController implements KeyboardHandler {
 
         Keyboard keyboard = new Keyboard(this);
 
-        char[] keys = {'D', 'A', 'S', 'W', 'Z', 'X', 'P', ' ', 'E', 'Y', 'N', 'I', '1', '2', '3', '4', '5', '6', '7','8','9'};
+        char[] keys = {'D', 'A', 'S', 'W', 'C', 'Z', 'X', 'P', ' ', 'E', 'Y', 'N', 'I', '1', '2', '3', '4', '5', '6', '7','8','9'};
 
         for (char key : keys) {
             KeyboardEvent event = new KeyboardEvent();
@@ -47,7 +47,7 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_E -> coloring.erase();
 
-            case KeyboardEvent.KEY_C -> {/*to export image as png or jpg or wtv */ }
+            case KeyboardEvent.KEY_C -> fileManager.exportToPng("resources/savedImage.png");
 
             case KeyboardEvent.KEY_Y -> { /*confirm Yes */ }
 
@@ -75,7 +75,7 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_Z -> fileManager.saveFile();
 
-            case KeyboardEvent.KEY_X -> { /* to load image */ }
+            case KeyboardEvent.KEY_X -> fileManager.loadFile();
             }
         }
 

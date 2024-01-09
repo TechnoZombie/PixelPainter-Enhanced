@@ -3,6 +3,7 @@ package tz.pixelpainter;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.keyboard.KeyboardController;
+//import tz.pixelpainter.utils.Auxiliaries;
 import tz.pixelpainter.utils.FileManager;
 import tz.pixelpainter.utils.Messages;
 
@@ -49,20 +50,33 @@ public class Canvas {
     }
 
 
-
-
     public void start(int width, int height, int pixelSize) {
-
-
         this.width = width;
         this.height = height;
         this.pixelSize = pixelSize;
+
+        loadTools();
+        gridGenerator();
+
+        //Filling the cursor needs to come last so that it over-imposes other elements of the grid
+        cursor.cursorFill();
+
+        messages.userText();
+
+    }
+
+    public void loadTools() {
         cursor = new Cursor(pixelSize);
         movement = new Movement(cursor, this);
         coloring = new Coloring(movement, cursor, this);
         messages = new Messages();
         fileManager = new FileManager(this, individualSquares, messages);
         keyboardController = new KeyboardController(movement, coloring, fileManager);
+    }
+
+
+    // Creates grid of squares
+    public void gridGenerator() {
 
         // Calculate the number of horizontal squares and vertical lines
         numHorizontalSquares = this.width / pixelSize;
@@ -71,7 +85,7 @@ public class Canvas {
         // Initialize the two-dimensional array with the correct size
         individualSquares = new Rectangle[numVerticalLines][numHorizontalSquares];
 
-        // Creates grid of squares
+        //  Generate the grid
         for (int i = 0; i < numVerticalLines; i++) {
             for (int j = 0; j < numHorizontalSquares; j++) {
                 individualSquares[i][j] = new Rectangle(1 + (j * pixelSize), 1 + (i * pixelSize), pixelSize, pixelSize);
@@ -80,11 +94,8 @@ public class Canvas {
 
             }
         }
-
-        //Filling the cursor needs to come last so that it over-imposes other elements of the grid
-        cursor.cursorFill();
-
-        messages.userText();
-
     }
+
 }
+
+

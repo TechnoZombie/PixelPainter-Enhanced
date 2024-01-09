@@ -41,6 +41,13 @@ public class Messages {
         System.out.println("IMAGE LOADED!");
     }
 
+    public void featureUnavailable() {
+        System.out.println("FEATURE IS NOT YET AVAILABLE.");
+    }
+
+    public void pngExported() {
+        System.out.println("IMAGE SAVED AS PNG!");
+    }
     public void areYouSure() {
         System.out.println("ARE YOU SURE? Y/N");
     }
