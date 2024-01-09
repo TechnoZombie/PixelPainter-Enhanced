@@ -23,42 +23,6 @@ public class FileManager {
 
     }
 
-   /* public void saveFile() {
-
-        //FUTURE IMPLEMENTATION: OVERWRITE PROTECTION.
-
-        int numVerticalLines = canvas.getNumVerticalLines();
-        int numHorizontalSquares = canvas.getNumHorizontalSquares();
-        individualSquaresToSave = canvas.getIndividualSquares();
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("resources/image.txt"))) {
-            for (int i = 0; i < numVerticalLines; i++) {
-                for (int j = 0; j < numHorizontalSquares; j++) {
-                    if (individualSquaresToSave[i][j].isFilled()) {
-                        Color squareColor = individualSquaresToSave[i][j].getColor();
-
-                        ColorProcessor processor = new ColorProcessor();
-                        processor.decodeColor(individualSquaresToSave[i][j].getColor());
-
-                        int red = squareColor.getRed();
-                        int green = squareColor.getGreen();
-                        int blue = squareColor.getBlue();
-
-                        writer.write(individualSquaresToSave[i][j] + "RGB:");
-                        writer.write(red + ",");
-                        writer.write(green + ",");
-                        writer.write(blue + "\n");
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    saveAsPng();
-        messages.imageSaved();
-
-    }*/
-
     public void saveFile() {
         int numVerticalLines = canvas.getNumVerticalLines();
         int numHorizontalSquares = canvas.getNumHorizontalSquares();
@@ -85,11 +49,10 @@ public class FileManager {
             e.printStackTrace();
         }
 
-     //   exportToPng("resources/savedImage.png");
         messages.imageSaved();
     }
 
-    public void loadFile(){
+    public void loadFile() {
         //HERE BE LYING CODE TO LOAD THE TXT COORDINATES
         messages.featureUnavailable();
     }
@@ -107,10 +70,11 @@ public class FileManager {
         for (Rectangle[] row : individualSquaresToSave) {
             for (Rectangle square : row) {
                 if (square.isFilled()) {
-                    //graphics.setColor(square.getColor());
-                   //.getColor belongs to java.awt. Multi-colored saving will only work when ColorProcessor is done
+                    ColorProcessor processor = new ColorProcessor();
+                    Color colorToDecode = square.getColor();
 
-                    graphics.setColor(java.awt.Color.BLACK);
+                    graphics.setColor(processor.decodeColor(colorToDecode));
+
                     graphics.fillRect(square.getX(), square.getY(), square.getWidth(), square.getHeight());
                 }
             }

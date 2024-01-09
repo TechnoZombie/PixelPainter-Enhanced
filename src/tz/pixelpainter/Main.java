@@ -1,5 +1,7 @@
 package tz.pixelpainter;
 
+import tz.pixelpainter.keyboard.MouseController;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -8,6 +10,7 @@ public class Main {
         int pixelSize = 20;
 
         Canvas canvas = new Canvas();
+
         canvas.start(width, height, pixelSize);
 
     }

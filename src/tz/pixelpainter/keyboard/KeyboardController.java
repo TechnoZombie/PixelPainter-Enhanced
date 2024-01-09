@@ -21,7 +21,7 @@ public class KeyboardController implements KeyboardHandler {
 
         Keyboard keyboard = new Keyboard(this);
 
-        char[] keys = {'D', 'A', 'S', 'W', 'C', 'Z', 'X', 'P', ' ', 'E', 'Y', 'N', 'I', '1', '2', '3', '4', '5', '6', '7','8','9'};
+        char[] keys = {'D', 'A', 'S', 'W', 'C', 'Z', 'X', 'P', ' ', 'E', 'Y', 'N', 'I', '1', '2', '3', '4', '5', '6', '7','8','9','0'};
 
         for (char key : keys) {
             KeyboardEvent event = new KeyboardEvent();
@@ -72,6 +72,8 @@ public class KeyboardController implements KeyboardHandler {
             case KeyboardEvent.KEY_8 -> coloring.colorPink();
 
             case KeyboardEvent.KEY_9 -> coloring.colorMagenta();
+
+            case KeyboardEvent.KEY_0 -> coloring.colorWhite();
 
             case KeyboardEvent.KEY_Z -> fileManager.saveFile();
 

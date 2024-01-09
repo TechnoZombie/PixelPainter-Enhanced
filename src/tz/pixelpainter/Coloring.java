@@ -7,6 +7,7 @@ public class Coloring {
     private final Movement movement;
     private final Cursor cursor;
     private final Canvas canvas;
+
     public void setChosenColor(Color chosenColor) {
         this.chosenColor = chosenColor;
     }
@@ -67,9 +68,11 @@ public class Coloring {
     public void colorYellow() {
         setChosenColor(Color.YELLOW);
     }
+
     public void colorOrange() {
         setChosenColor(Color.ORANGE);
     }
+
     public void colorPink() {
         setChosenColor(Color.PINK);
     }
@@ -78,6 +81,9 @@ public class Coloring {
         setChosenColor(Color.MAGENTA);
     }
 
+    public void colorWhite() {
+        setChosenColor(Color.WHITE);
+    }
 }
 
 
