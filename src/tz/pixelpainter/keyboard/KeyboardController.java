@@ -6,7 +6,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import tz.pixelpainter.Movement;
 import tz.pixelpainter.Coloring;
-import tz.pixelpainter.utils.Aux;
+import tz.pixelpainter.utils.Auxes;
 import tz.pixelpainter.utils.FileManager;
 
 public class KeyboardController implements KeyboardHandler {
@@ -14,13 +14,13 @@ public class KeyboardController implements KeyboardHandler {
     private final Movement movement;
     private final Coloring coloring;
     private final FileManager fileManager;
-    private final Aux aux;
+    private final Auxes auxes;
 
-    public KeyboardController(Movement movement, Coloring coloring, FileManager fileManager, Aux aux) {
+    public KeyboardController(Movement movement, Coloring coloring, FileManager fileManager, Auxes auxes) {
         this.movement = movement;
         this.coloring = coloring;
         this.fileManager = fileManager;
-        this.aux = aux;
+        this.auxes = auxes;
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -56,7 +56,7 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_I -> fileManager.getInfo();
 
-            case KeyboardEvent.KEY_O -> aux.confirmationScanner();
+            case KeyboardEvent.KEY_O -> auxes.confirmationScanner();
 
             case KeyboardEvent.KEY_1 -> coloring.colorBlack();
 
