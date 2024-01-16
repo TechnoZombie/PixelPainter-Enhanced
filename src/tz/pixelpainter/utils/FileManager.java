@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.sql.SQLOutput;
+import java.util.Arrays;
 
 public class FileManager {
 
@@ -15,12 +17,14 @@ public class FileManager {
     private Rectangle[][] individualSquaresToSave;
     private final Messages messages;
 
+    private ColorProcessor colorProcessor;
 
-    public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages) {
+
+    public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages, ColorProcessor colorProcessor) {
         this.individualSquaresToSave = individualSquaresToSave;
         this.canvas = canvas;
         this.messages = messages;
-
+        this.colorProcessor = colorProcessor;
     }
 
     public void saveFile() {
@@ -34,14 +38,10 @@ public class FileManager {
                     if (individualSquaresToSave[i][j].isFilled()) {
                         Color squareColor = individualSquaresToSave[i][j].getColor();
 
-                        int red = squareColor.getRed();
-                        int green = squareColor.getGreen();
-                        int blue = squareColor.getBlue();
-
-                        writer.write(individualSquaresToSave[i][j] + "RGB:");
-                        writer.write(red + ",");
-                        writer.write(green + ",");
-                        writer.write(blue + "\n");
+                        writer.write(individualSquaresToSave[i][j] + "R:");
+                        writer.write(squareColor.getRed() + ",G:");
+                        writer.write(squareColor.getGreen() + ",B:");
+                        writer.write(squareColor.getBlue() + ";\n");
                     }
                 }
             }
@@ -53,8 +53,42 @@ public class FileManager {
     }
 
     public void loadFile() {
-        //HERE BE LYING CODE TO LOAD THE TXT COORDINATES
-        messages.featureUnavailable();
+        try (BufferedReader reader = new BufferedReader(new FileReader("resources/image.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Rectangle")) {
+
+                    // Extract coordinates
+                    int x = Integer.parseInt(line.split("x=")[1].split(",")[0]);
+                    int y = Integer.parseInt(line.split("y=")[1].split(",")[0]);
+                    int w = Integer.parseInt(line.split("width=")[1].split(",")[0]);
+
+                    // Extract RGB values
+                    int red = Integer.parseInt(line.split("R:")[1].split(",")[0]);
+                    int green = Integer.parseInt(line.split("G:")[1].split(",")[0]);
+                    int blue = Integer.parseInt(line.split("B:")[1].split(";")[0]);
+
+                    // Convert coordinates into 2D array index
+                    int iX = coordinateConverter(x, w);
+                    int iY = coordinateConverter(y, w);
+
+                    // Update canvas with the loaded data
+                    canvas.getIndividualSquares()[iY][iX].setColor(colorProcessor.encodeColor(red, green, blue));
+                    canvas.getIndividualSquares()[iY][iX].fill();
+                }
+            }
+
+            messages.imageLoaded();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            messages.featureUnavailable();
+        }
+    }
+
+    //Converts coordinates into 2D array positions
+    public int coordinateConverter(int n, int w) {
+        return (n - 1) / w;
     }
 
     public void exportToPng(String filePath) {
@@ -92,6 +126,7 @@ public class FileManager {
 
 
     // Print information about individual painted squares by pressing key I
+    // To comment or remove on final version
     public void getInfo() {
         int numVerticalLines = canvas.getNumVerticalLines();
         int numHorizontalSquares = canvas.getNumHorizontalSquares();

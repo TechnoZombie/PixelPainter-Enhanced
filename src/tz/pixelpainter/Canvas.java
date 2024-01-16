@@ -5,10 +5,12 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.keyboard.KeyboardController;
 //import tz.pixelpainter.utils.Auxiliaries;
 import tz.pixelpainter.keyboard.MouseController;
+import tz.pixelpainter.utils.ColorProcessor;
 import tz.pixelpainter.utils.FileManager;
 import tz.pixelpainter.utils.Messages;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.stream.IntStream;
 
 public class Canvas {
@@ -18,6 +20,7 @@ public class Canvas {
     private int height;
     private int pixelSize;
     private Rectangle canvas;
+    private ColorProcessor colorProcessor;
     private Rectangle[][] individualSquares;
     private FileManager fileManager;
     private KeyboardController keyboardController;
@@ -73,7 +76,8 @@ public class Canvas {
         movement = new Movement(cursor, this);
         coloring = new Coloring(movement, cursor, this);
         messages = new Messages();
-        fileManager = new FileManager(this, individualSquares, messages);
+        colorProcessor = new ColorProcessor();
+        fileManager = new FileManager(this, individualSquares, messages, colorProcessor);
         keyboardController = new KeyboardController(movement, coloring, fileManager);
         mouseController = new MouseController(cursor, coloring);
     }
