@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.keyboard.KeyboardController;
 //import tz.pixelpainter.utils.Auxiliaries;
 import tz.pixelpainter.keyboard.MouseController;
-import tz.pixelpainter.utils.Auxes;
+import tz.pixelpainter.utils.Auxiliaries;
 import tz.pixelpainter.utils.ColorProcessor;
 import tz.pixelpainter.utils.FileManager;
 import tz.pixelpainter.utils.Messages;
@@ -27,7 +27,7 @@ public class Canvas {
     private Messages messages;
     private Movement movement;
     private Coloring coloring;
-    private Auxes auxes;
+    private Auxiliaries auxiliaries;
 
     public int getWidth() {
         return width;
@@ -76,8 +76,8 @@ public class Canvas {
         messages = new Messages();
         colorProcessor = new ColorProcessor();
         fileManager = new FileManager(this, individualSquares, messages, colorProcessor);
-        auxes = new Auxes(messages,coloring);
-        keyboardController = new KeyboardController(movement, coloring, fileManager, auxes);
+        auxiliaries = new Auxiliaries(messages,coloring);
+        keyboardController = new KeyboardController(movement, coloring, fileManager, auxiliaries);
         mouseController = new MouseController(cursor, coloring);
     }
 

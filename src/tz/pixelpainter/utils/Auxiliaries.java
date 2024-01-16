@@ -4,12 +4,12 @@ import tz.pixelpainter.Coloring;
 
 import java.util.Scanner;
 
-public class Auxes {
+public class Auxiliaries {
 
     private Messages messages;
     private Coloring coloring;
 
-    public Auxes(Messages messages, Coloring coloring) {
+    public Auxiliaries(Messages messages, Coloring coloring) {
         this.messages = messages;
         this.coloring = coloring;
     }
