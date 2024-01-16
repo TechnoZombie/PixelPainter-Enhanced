@@ -11,6 +11,7 @@ public class Messages {
                         "| W-A-S-D: MOVE        | KEY Z: SAVE IMAGE          |\n" +
                         "| SPACE: PAINT         | KEY X: LOAD IMAGE          |\n" +
                         "| KEY E: ERASE SQUARE  | KEY C: EXPORT IMAGE TO PNG |\n" +
+                        "| KEY O: CLEAR CANVAS  |                            |\n" +
                         "+---------------------------------------------------+\n" +
                         "|COLOR SELECTION:                                   |\n" +
                         "| KEY 1: BLACK         | KEY 6: YELLOW              |\n" +
@@ -40,7 +41,15 @@ public class Messages {
         System.out.println("IMAGE SAVED AS PNG!");
     }
 
-    public void areYouSure() {
-        System.out.println("ARE YOU SURE? Y/N");
+    public void areYouSureClear() {
+        System.out.println("CLEAR CANVAS: \nARE YOU SURE? (Y/N):");
+    }
+
+    public void actionCancelled() {
+        System.out.println("ACTION WAS CANCELLED!");
+    }
+
+    public void dragPaintingStatus(){
+        System.out.println("DRAG PAINTING IS: ");
     }
 }

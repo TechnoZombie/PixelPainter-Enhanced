@@ -4,27 +4,45 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 
 public class ColorProcessor {
 
-    public ColorProcessor() {
-    }
-
-    public Color encodeColor(int red, int green, int blue) {
+    public String encodeColor(int red, int green, int blue) {
 
         String colorString = red + ", " + green + ", " + blue;
 
         return switch (colorString) {
-            case "0, 0, 0" -> Color.BLACK;
-            case "255, 0, 0" -> Color.RED;
-            case "0, 255, 0" -> Color.GREEN;
-            case "0, 0, 255" -> Color.BLUE;
-            case "255, 255, 255" -> Color.WHITE;
-            case "192, 192, 192" -> Color.LIGHT_GRAY;
-            case "128, 128, 128" -> Color.GRAY;
-            case "64, 64, 64" -> Color.DARK_GRAY;
-            case "0, 255, 255" -> Color.CYAN;
-            case "255, 0, 255" -> Color.MAGENTA;
-            case "255, 255, 0" -> Color.YELLOW;
-            case "255, 175, 175" -> Color.PINK;
-            case "255, 200, 0" -> Color.ORANGE;
+            case "0, 0, 0" -> "BLACK";
+            case "255, 0, 0" -> "RED";
+            case "0, 255, 0" -> "GREEN";
+            case "0, 0, 255" -> "BLUE";
+            case "255, 255, 255" -> "WHITE";
+            case "192, 192, 192" -> "LIGHT_GRAY";
+            case "128, 128, 128" -> "GRAY";
+            case "64, 64, 64" -> "DARK_GRAY";
+            case "0, 255, 255" -> "CYAN";
+            case "255, 0, 255" -> "MAGENTA";
+            case "255, 255, 0" -> "YELLOW";
+            case "255, 175, 175" -> "PINK";
+            case "255, 200, 0" -> "ORANGE";
+            default -> "BLACK";
+        };
+
+    }
+
+    public Color colorTranslator(String color) {
+
+        return switch (color) {
+            case "BLACK" -> Color.BLACK;
+            case "RED" -> Color.RED;
+            case "GREEN" -> Color.GREEN;
+            case "BLUE" -> Color.BLUE;
+            case "WHITE" -> Color.WHITE;
+            case "LIGHT_GRAY" -> Color.LIGHT_GRAY;
+            case "GRAY" -> Color.GRAY;
+            case "DARK_GRAY" -> Color.DARK_GRAY;
+            case "CYAN" -> Color.CYAN;
+            case "MAGENTA" -> Color.MAGENTA;
+            case "YELLOW" -> Color.YELLOW;
+            case "PINK" -> Color.PINK;
+            case "ORANGE" -> Color.ORANGE;
             default -> Color.BLACK;
         };
 

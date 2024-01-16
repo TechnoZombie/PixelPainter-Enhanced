@@ -6,6 +6,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import tz.pixelpainter.Movement;
 import tz.pixelpainter.Coloring;
+import tz.pixelpainter.utils.Aux;
 import tz.pixelpainter.utils.FileManager;
 
 public class KeyboardController implements KeyboardHandler {
@@ -13,15 +14,17 @@ public class KeyboardController implements KeyboardHandler {
     private final Movement movement;
     private final Coloring coloring;
     private final FileManager fileManager;
+    private final Aux aux;
 
-    public KeyboardController(Movement movement, Coloring coloring, FileManager fileManager) {
+    public KeyboardController(Movement movement, Coloring coloring, FileManager fileManager, Aux aux) {
         this.movement = movement;
         this.coloring = coloring;
         this.fileManager = fileManager;
+        this.aux = aux;
 
         Keyboard keyboard = new Keyboard(this);
 
-        char[] keys = {'D', 'A', 'S', 'W', 'C', 'Z', 'X', 'P', ' ', 'E', 'Y', 'N', 'I', '1', '2', '3', '4', '5', '6', '7','8','9','0'};
+        char[] keys = {'D', 'A', 'S', 'W', 'C', 'Z', 'X', 'O', 'P', ' ', 'E', 'Y', 'N', 'I', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 
         for (char key : keys) {
             KeyboardEvent event = new KeyboardEvent();
@@ -30,6 +33,8 @@ public class KeyboardController implements KeyboardHandler {
             keyboard.addEventListener(event);
         }
     }
+
+
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -49,11 +54,9 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_C -> fileManager.exportToPng("resources/savedImage.png");
 
-            case KeyboardEvent.KEY_Y -> { /*confirm Yes */ }
-
-            case KeyboardEvent.KEY_N -> { /*confirm No */ }
-
             case KeyboardEvent.KEY_I -> fileManager.getInfo();
+
+            case KeyboardEvent.KEY_O -> aux.confirmationScanner();
 
             case KeyboardEvent.KEY_1 -> coloring.colorBlack();
 
@@ -83,6 +86,16 @@ public class KeyboardController implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+   }
 
-    }
+   /* public void toggleKey(){
+        if (!active){
+            active = true;
+            coloring.setDragging(true);
+        }
+        else {
+            active = false;
+            coloring.setDragging(false);
+        }
+    } */
 }

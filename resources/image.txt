@@ -1,6 +1,10 @@
-Rectangle[x=1,y=1,width=20,height=20]R:0,G:0,B:0;
-Rectangle[x=21,y=21,width=20,height=20]R:255,G:0,B:0;
-Rectangle[x=41,y=41,width=20,height=20]R:0,G:0,B:255;
-Rectangle[x=61,y=61,width=20,height=20]R:0,G:255,B:255;
-Rectangle[x=81,y=81,width=20,height=20]R:255,G:255,B:0;
-Rectangle[x=101,y=101,width=20,height=20]R:255,G:200,B:0;
+Rectangle[x=1,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=21,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=41,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=61,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=81,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=101,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=121,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=141,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=161,y=1,width=20,height=20]Color:BLACK;
+Rectangle[x=181,y=1,width=20,height=20]Color:BLACK;

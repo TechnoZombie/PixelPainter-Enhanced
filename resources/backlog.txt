@@ -1,0 +1,5 @@
+1. Overwrite protection;
+
+2. Drag painting - click to start painting, drag cursor and paint, click to stop painting;
+
+4. Mouse controller;

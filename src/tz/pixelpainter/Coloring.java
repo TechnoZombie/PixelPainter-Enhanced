@@ -7,15 +7,17 @@ public class Coloring {
     private final Movement movement;
     private final Cursor cursor;
     private final Canvas canvas;
-
-    public void setChosenColor(Color chosenColor) {
-        this.chosenColor = chosenColor;
-    }
-
     Color chosenColor = Color.BLACK;
     Color gridColor = Color.BLACK;
     int cursorSquareX;
     int cursorSquareY;
+
+   /* private boolean dragging = false;
+
+    public void setDragging(boolean dragging) {
+        this.dragging = dragging;
+        System.out.println("Drag painting is: " + dragging);
+    }*/
 
     public Coloring(Movement movement, Cursor cursor, Canvas canvas) {
         this.movement = movement;
@@ -43,6 +45,24 @@ public class Coloring {
             canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].draw();
         }
         cursor.cursorReFill();
+    }
+
+    public void clearCanvas() {
+        int canvasWidth = canvas.getNumHorizontalSquares();
+        int canvasHeight = canvas.getNumVerticalLines();
+
+        for (int i = 0; i < canvasHeight; i++) {
+            for (int j = 0; j < canvasWidth; j++) {
+                canvas.getIndividualSquares()[i][j].delete();
+                canvas.getIndividualSquares()[i][j].setColor(gridColor);
+                canvas.getIndividualSquares()[i][j].draw();
+            }
+        }
+        cursor.cursorReFill();
+    }
+
+    public void setChosenColor(Color chosenColor) {
+        this.chosenColor = chosenColor;
     }
 
     public void colorBlack() {

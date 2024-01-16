@@ -8,17 +8,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.sql.SQLOutput;
-import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class FileManager {
 
     private final Canvas canvas;
     private Rectangle[][] individualSquaresToSave;
     private final Messages messages;
-
     private ColorProcessor colorProcessor;
-
 
     public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages, ColorProcessor colorProcessor) {
         this.individualSquaresToSave = individualSquaresToSave;
@@ -36,12 +33,12 @@ public class FileManager {
             for (int i = 0; i < numVerticalLines; i++) {
                 for (int j = 0; j < numHorizontalSquares; j++) {
                     if (individualSquaresToSave[i][j].isFilled()) {
-                        Color squareColor = individualSquaresToSave[i][j].getColor();
 
-                        writer.write(individualSquaresToSave[i][j] + "R:");
-                        writer.write(squareColor.getRed() + ",G:");
-                        writer.write(squareColor.getGreen() + ",B:");
-                        writer.write(squareColor.getBlue() + ";\n");
+                        Color squareColor = individualSquaresToSave[i][j].getColor();
+                        String color = colorProcessor.encodeColor(squareColor.getRed(), squareColor.getGreen(), squareColor.getBlue());
+
+                        writer.write(individualSquaresToSave[i][j] + "Color:");
+                        writer.write(color + ";\n");
                     }
                 }
             }
@@ -59,21 +56,19 @@ public class FileManager {
                 if (line.startsWith("Rectangle")) {
 
                     // Extract coordinates
-                    int x = Integer.parseInt(line.split("x=")[1].split(",")[0]);
-                    int y = Integer.parseInt(line.split("y=")[1].split(",")[0]);
-                    int w = Integer.parseInt(line.split("width=")[1].split(",")[0]);
+                    int x = coordinateExtractor("x=",",",line);
+                    int y = coordinateExtractor("y=",",",line);
+                    int w = coordinateExtractor("width=",",",line);
 
-                    // Extract RGB values
-                    int red = Integer.parseInt(line.split("R:")[1].split(",")[0]);
-                    int green = Integer.parseInt(line.split("G:")[1].split(",")[0]);
-                    int blue = Integer.parseInt(line.split("B:")[1].split(";")[0]);
+                    // Extract color
+                    String color = line.split("Color:")[1].split(";")[0];
 
                     // Convert coordinates into 2D array index
                     int iX = coordinateConverter(x, w);
                     int iY = coordinateConverter(y, w);
 
                     // Update canvas with the loaded data
-                    canvas.getIndividualSquares()[iY][iX].setColor(colorProcessor.encodeColor(red, green, blue));
+                    canvas.getIndividualSquares()[iY][iX].setColor(colorProcessor.colorTranslator(color));
                     canvas.getIndividualSquares()[iY][iX].fill();
                 }
             }
@@ -84,6 +79,11 @@ public class FileManager {
             e.printStackTrace();
             messages.featureUnavailable();
         }
+    }
+
+    // Extracts coordinates from a string using regex
+    public int coordinateExtractor(String start, String stop, String line){
+        return Integer.parseInt(line.split(start)[1].split(stop)[0]);
     }
 
     //Converts coordinates into 2D array positions
