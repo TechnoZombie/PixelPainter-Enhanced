@@ -1,4 +1,4 @@
-package tz.pixelpainter.keyboard;
+package tz.pixelpainter.hid;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;

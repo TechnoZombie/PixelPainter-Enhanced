@@ -1,4 +1,4 @@
-package tz.pixelpainter.keyboard;
+package tz.pixelpainter.hid;
 
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;

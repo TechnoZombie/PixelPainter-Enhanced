@@ -2,9 +2,9 @@ package tz.pixelpainter;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import tz.pixelpainter.keyboard.KeyboardController;
+import tz.pixelpainter.hid.KeyboardController;
 //import tz.pixelpainter.utils.Auxiliaries;
-import tz.pixelpainter.keyboard.MouseController;
+import tz.pixelpainter.hid.MouseController;
 import tz.pixelpainter.utils.Auxiliaries;
 import tz.pixelpainter.utils.ColorProcessor;
 import tz.pixelpainter.utils.FileManager;
