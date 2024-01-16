@@ -104,6 +104,10 @@ public class Coloring {
     public void colorWhite() {
         setChosenColor(Color.WHITE);
     }
+
+    public void colorLightGray() {
+        setChosenColor(Color.LIGHT_GRAY);
+    }
 }
 
 

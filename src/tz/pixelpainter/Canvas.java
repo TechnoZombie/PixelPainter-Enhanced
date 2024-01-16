@@ -75,8 +75,9 @@ public class Canvas {
         coloring = new Coloring(movement, cursor, this);
         messages = new Messages();
         colorProcessor = new ColorProcessor();
-        fileManager = new FileManager(this, individualSquares, messages, colorProcessor);
         auxiliaries = new Auxiliaries(messages,coloring);
+        fileManager = new FileManager(this, individualSquares, messages, colorProcessor,auxiliaries);
+        auxiliaries.setFileManager(fileManager);
         keyboardController = new KeyboardController(movement, coloring, fileManager, auxiliaries);
         mouseController = new MouseController(cursor, coloring);
     }

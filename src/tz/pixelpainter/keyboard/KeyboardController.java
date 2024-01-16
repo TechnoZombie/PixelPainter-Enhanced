@@ -32,6 +32,11 @@ public class KeyboardController implements KeyboardHandler {
             event.setKey(key);
             keyboard.addEventListener(event);
         }
+
+        KeyboardEvent event = new KeyboardEvent();
+        event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        event.setKey(KeyboardEvent.KEY_UP);
+        keyboard.addEventListener(event);
     }
 
 
@@ -56,7 +61,10 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_I -> fileManager.getInfo();
 
-            case KeyboardEvent.KEY_O -> auxiliaries.confirmationScanner();
+            //CHANGE ME
+            case KeyboardEvent.KEY_UP -> coloring.colorLightGray();
+
+            case KeyboardEvent.KEY_O -> auxiliaries.clearConfirmationScanner();
 
             case KeyboardEvent.KEY_1 -> coloring.colorBlack();
 

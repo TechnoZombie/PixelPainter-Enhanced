@@ -16,20 +16,34 @@ public class FileManager {
     private Rectangle[][] individualSquaresToSave;
     private final Messages messages;
     private ColorProcessor colorProcessor;
+    private Auxiliaries auxiliaries;
+    String filePath = "resources/image.txt";
 
-    public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages, ColorProcessor colorProcessor) {
+    public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages, ColorProcessor colorProcessor, Auxiliaries auxiliaries) {
         this.individualSquaresToSave = individualSquaresToSave;
         this.canvas = canvas;
         this.messages = messages;
         this.colorProcessor = colorProcessor;
+        this.auxiliaries = auxiliaries;
     }
 
     public void saveFile() {
+
+        File file = new File(filePath);
+
+        if (file.exists()) {
+            auxiliaries.overwriteConfirmationScanner();
+        }else if (!file.exists()){
+            saveFileLogic();
+        }
+    }
+
+    public void saveFileLogic(){
         int numVerticalLines = canvas.getNumVerticalLines();
         int numHorizontalSquares = canvas.getNumHorizontalSquares();
         individualSquaresToSave = canvas.getIndividualSquares();
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("resources/image.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (int i = 0; i < numVerticalLines; i++) {
                 for (int j = 0; j < numHorizontalSquares; j++) {
                     if (individualSquaresToSave[i][j].isFilled()) {
@@ -45,7 +59,6 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         messages.imageSaved();
     }
 
@@ -56,9 +69,9 @@ public class FileManager {
                 if (line.startsWith("Rectangle")) {
 
                     // Extract coordinates
-                    int x = coordinateExtractor("x=",",",line);
-                    int y = coordinateExtractor("y=",",",line);
-                    int w = coordinateExtractor("width=",",",line);
+                    int x = coordinateExtractor("x=", ",", line);
+                    int y = coordinateExtractor("y=", ",", line);
+                    int w = coordinateExtractor("width=", ",", line);
 
                     // Extract color
                     String color = line.split("Color:")[1].split(";")[0];
@@ -82,7 +95,7 @@ public class FileManager {
     }
 
     // Extracts coordinates from a string using regex
-    public int coordinateExtractor(String start, String stop, String line){
+    public int coordinateExtractor(String start, String stop, String line) {
         return Integer.parseInt(line.split(start)[1].split(stop)[0]);
     }
 

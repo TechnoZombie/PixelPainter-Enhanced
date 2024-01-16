@@ -26,11 +26,19 @@ public class Messages {
     }
 
     public void imageSaved() {
-        System.out.println("IMAGE SAVED!");
+        System.out.println(
+                "+-----------------------+\n" +
+                "| IMAGE SAVED!          |\n" +
+                "+-----------------------+"
+        );
     }
 
     public void imageLoaded() {
-        System.out.println("IMAGE LOADED!");
+        System.out.println(
+                "+-----------------------+\n" +
+                "| IMAGE LOADED!         |\n" +
+                "+-----------------------+"
+        );
     }
 
     public void featureUnavailable() {
@@ -38,15 +46,44 @@ public class Messages {
     }
 
     public void pngExported() {
-        System.out.println("IMAGE SAVED AS PNG!");
+        System.out.println(
+                "+-----------------------+\n" +
+                "| IMAGE SAVED AS PNG!   |\n" +
+                "+-----------------------+"
+        );
     }
 
     public void areYouSureClear() {
-        System.out.println("CLEAR CANVAS: \nARE YOU SURE? (Y/N):");
+        System.out.println(
+                "+-----------------------+\n" +
+                "| CLEAR CANVAS:         |\n"+
+                "|  ARE YOU SURE? (Y/N): |\n"+
+                "+-----------------------+"
+        );
     }
 
+    public void areYouSureOverwrite() {
+        System.out.println(
+                "+-----------------------+\n" +
+                        "| OVERWRITE IMAGE:      |\n"+
+                        "|  ARE YOU SURE? (Y/N): |\n"+
+                        "+-----------------------+"
+        );
+    }
+
+    public void canvasCleared() {
+        System.out.println(
+                "+-----------------------+\n" +
+                "| CANVAS CLEARED!       |\n" +
+                "+-----------------------+"
+        );
+    }
     public void actionCancelled() {
-        System.out.println("ACTION WAS CANCELLED!");
+        System.out.println(
+                "+-----------------------+\n" +
+                "| ACTION WAS CANCELLED! |\n" +
+                "+-----------------------+"
+        );
     }
 
     public void dragPaintingStatus(){

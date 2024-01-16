@@ -1,5 +1,5 @@
-1. Overwrite protection;
-
 2. Drag painting - click to start painting, drag cursor and paint, click to stop painting;
 
 4. Mouse controller;
+
+5. Limit png export to drawn image size, instead of full canvas
