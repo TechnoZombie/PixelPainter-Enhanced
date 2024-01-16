@@ -32,12 +32,12 @@ public class FileManager {
 
         if (file.exists()) {
             auxiliaries.overwriteConfirmationScanner();
-        }else if (!file.exists()){
+        } else if (!file.exists()) {
             saveFileLogic();
         }
     }
 
-    public void saveFileLogic(){
+    public void saveFileLogic() {
         int numVerticalLines = canvas.getNumVerticalLines();
         int numHorizontalSquares = canvas.getNumHorizontalSquares();
         individualSquaresToSave = canvas.getIndividualSquares();
@@ -104,38 +104,70 @@ public class FileManager {
     }
 
     public void exportToPng(String filePath) {
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
+        saveFile(); // Needs to call saveFile() first to prevent empty individualSquaresToSave from throwing nullPointerException;
 
-        saveFile(); //Needs to call saveFile() first to prevent empty individualSquaresToSave from throwing nullPointerException;
+        /* Find the bounding box of the painted squares
+           This is done so that the image is exported without the full canvas size.
+         */
+        Rectangle boundingBox = findPaintedBoundingBox();
 
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D graphics = image.createGraphics();
+        if (boundingBox != null) {
+            // Create an image with the size of the bounding box
+            BufferedImage image = new BufferedImage(boundingBox.getWidth(), boundingBox.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D graphics = image.createGraphics();
 
-        // Drawing individual squares to the image
+            // Translate the graphics context to match the bounding box
+            graphics.translate(-boundingBox.getX(), -boundingBox.getY());
+
+            // Drawing individual squares to the image within the bounding box
+            for (Rectangle[] row : individualSquaresToSave) {
+                for (Rectangle square : row) {
+                    if (square.isFilled()) {
+                        ColorProcessor processor = new ColorProcessor();
+                        Color colorToDecode = square.getColor();
+
+                        graphics.setColor(processor.decodeColor(colorToDecode));
+
+                        graphics.fillRect(square.getX(), square.getY(), square.getWidth(), square.getHeight());
+                    }
+                }
+            }
+
+            graphics.dispose();
+            messages.pngExported();
+
+            try {
+                ImageIO.write(image, "png", new File(filePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Rectangle findPaintedBoundingBox() {
+        int minX = Integer.MAX_VALUE;
+        int minY = Integer.MAX_VALUE;
+        int maxX = Integer.MIN_VALUE;
+        int maxY = Integer.MIN_VALUE;
+
         for (Rectangle[] row : individualSquaresToSave) {
             for (Rectangle square : row) {
                 if (square.isFilled()) {
-                    ColorProcessor processor = new ColorProcessor();
-                    Color colorToDecode = square.getColor();
-
-                    graphics.setColor(processor.decodeColor(colorToDecode));
-
-                    graphics.fillRect(square.getX(), square.getY(), square.getWidth(), square.getHeight());
+                    minX = Math.min(minX, square.getX());
+                    minY = Math.min(minY, square.getY());
+                    maxX = Math.max(maxX, square.getX() + square.getWidth());
+                    maxY = Math.max(maxY, square.getY() + square.getHeight());
                 }
             }
         }
 
-        graphics.dispose();
-        messages.pngExported();
-
-        try {
-            ImageIO.write(image, "png", new File(filePath));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (minX == Integer.MAX_VALUE || minY == Integer.MAX_VALUE) {
+            // No painted squares found
+            return null;
         }
-    }
 
+        return new Rectangle(minX, minY, maxX - minX, maxY - minY);
+    }
 
     // Print information about individual painted squares by pressing key I
     // To comment or remove on final version

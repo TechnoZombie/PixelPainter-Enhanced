@@ -3,8 +3,6 @@ package tz.pixelpainter;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.hid.KeyboardController;
-//import tz.pixelpainter.utils.Auxiliaries;
-import tz.pixelpainter.hid.MouseController;
 import tz.pixelpainter.utils.Auxiliaries;
 import tz.pixelpainter.utils.ColorProcessor;
 import tz.pixelpainter.utils.FileManager;
@@ -16,12 +14,10 @@ public class Canvas {
     private int width;
     private int height;
     private int pixelSize;
-    private Rectangle canvas;
     private ColorProcessor colorProcessor;
     private Rectangle[][] individualSquares;
     private FileManager fileManager;
     private KeyboardController keyboardController;
-    private MouseController mouseController;
     private int numHorizontalSquares;
     private int numVerticalLines;
     private Messages messages;
@@ -79,7 +75,6 @@ public class Canvas {
         fileManager = new FileManager(this, individualSquares, messages, colorProcessor,auxiliaries);
         auxiliaries.setFileManager(fileManager);
         keyboardController = new KeyboardController(movement, coloring, fileManager, auxiliaries);
-        mouseController = new MouseController(cursor, coloring);
     }
 
 
