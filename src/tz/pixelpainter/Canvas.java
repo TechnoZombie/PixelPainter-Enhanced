@@ -3,10 +3,7 @@ package tz.pixelpainter;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import tz.pixelpainter.hid.KeyboardController;
-import tz.pixelpainter.utils.Auxiliaries;
-import tz.pixelpainter.utils.ColorProcessor;
-import tz.pixelpainter.utils.FileManager;
-import tz.pixelpainter.utils.Messages;
+import tz.pixelpainter.utils.*;
 
 public class Canvas {
 
@@ -18,8 +15,8 @@ public class Canvas {
     private Rectangle[][] individualSquares;
     private FileManager fileManager;
     private KeyboardController keyboardController;
-    private int numHorizontalSquares;
-    private int numVerticalLines;
+    private int numberOfColumns;
+    private int numberOfLines;
     private Messages messages;
     private Movement movement;
     private Coloring coloring;
@@ -41,12 +38,12 @@ public class Canvas {
         return individualSquares;
     }
 
-    public int getNumHorizontalSquares() {
-        return numHorizontalSquares;
+    public int getNumberOfColumns() {
+        return numberOfColumns;
     }
 
     public int getNumVerticalLines() {
-        return numVerticalLines;
+        return numberOfLines;
     }
 
 
@@ -55,14 +52,28 @@ public class Canvas {
         this.height = height;
         this.pixelSize = pixelSize;
 
+        Generators generators = new Generators(width,height,pixelSize);
+        generators.wallpaperGenerator();
+        generators.tableGenerator(1,12,170,pixelSize);
+
         loadTools();
         gridGenerator();
+
+
+        //Loads a picture from file
+        //Picture picture = new Picture(5, 5, "resources/fff.png");
+
+        // resizes picture
+        // v = width
+        // v1 = height
+        //picture.grow(0, 200);
+
+        //picture.draw();
 
         //Filling the cursor needs to come last so that it over-imposes other elements of the grid
         cursor.cursorFill();
 
-        messages.userText();
-
+        messages.instructionsTable();
     }
 
     public void loadTools() {
@@ -71,33 +82,38 @@ public class Canvas {
         coloring = new Coloring(movement, cursor, this);
         messages = new Messages();
         colorProcessor = new ColorProcessor();
-        auxiliaries = new Auxiliaries(messages,coloring);
-        fileManager = new FileManager(this, individualSquares, messages, colorProcessor,auxiliaries);
+        auxiliaries = new Auxiliaries(messages, coloring);
+        fileManager = new FileManager(this, individualSquares, messages, colorProcessor, auxiliaries);
         auxiliaries.setFileManager(fileManager);
         keyboardController = new KeyboardController(movement, coloring, fileManager, auxiliaries);
     }
 
-
     // Creates grid of squares
     public void gridGenerator() {
 
+        Rectangle gridBase = new Rectangle(5, 5, width +10, height +10);
+        gridBase.setColor(Color.WHITE);
+        gridBase.fill();
+
         // Calculate the number of horizontal squares and vertical lines
-        numHorizontalSquares = this.width / pixelSize;
-        numVerticalLines = this.height / pixelSize;
+        numberOfColumns = this.width / pixelSize;
+        numberOfLines = this.height / pixelSize;
 
         // Initialize the two-dimensional array with the correct size
-        individualSquares = new Rectangle[numVerticalLines][numHorizontalSquares];
+        individualSquares = new Rectangle[numberOfLines][numberOfColumns];
 
         //  Generate the grid
-        for (int i = 0; i < numVerticalLines; i++) {
-            for (int j = 0; j < numHorizontalSquares; j++) {
-                individualSquares[i][j] = new Rectangle(1 + (j * pixelSize), 1 + (i * pixelSize), pixelSize, pixelSize);
+        for (int i = 0; i < numberOfLines; i++) {
+            for (int j = 0; j < numberOfColumns; j++) {
+                individualSquares[i][j] = new Rectangle(10 + (j * pixelSize), 10 + (i * pixelSize), pixelSize, pixelSize);
                 individualSquares[i][j].setColor(Color.BLACK);
                 individualSquares[i][j].draw();
 
             }
         }
     }
+
+
 }
 
 

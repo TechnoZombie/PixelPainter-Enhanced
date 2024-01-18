@@ -48,7 +48,7 @@ public class Coloring {
     }
 
     public void clearCanvas() {
-        int canvasWidth = canvas.getNumHorizontalSquares();
+        int canvasWidth = canvas.getNumberOfColumns();
         int canvasHeight = canvas.getNumVerticalLines();
 
         for (int i = 0; i < canvasHeight; i++) {

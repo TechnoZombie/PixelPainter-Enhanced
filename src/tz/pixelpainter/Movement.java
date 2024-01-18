@@ -22,7 +22,7 @@ public class Movement {
     }
 
     public void moveUp() {
-        if (cursor.getY() > 1) {
+        if (cursor.getY() > 10) {
             cursor.translate(0, -canvas.getPixelSize());
             cursorIndexY--;
         }

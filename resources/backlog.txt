@@ -1,1 +1,10 @@
-2. Drag painting - click to start painting, drag cursor and paint, click to stop painting;
+1. splash screen
+1.1. advance to canvas on key press
+
+2. clean up wallpaper generator
+
+3. code instruction manual to screen and not console
+
+4. Drag painting - click to start painting, drag cursor and paint, click to stop painting;
+
+5. Painting with mouse

@@ -39,7 +39,7 @@ public class FileManager {
 
     public void saveFileLogic() {
         int numVerticalLines = canvas.getNumVerticalLines();
-        int numHorizontalSquares = canvas.getNumHorizontalSquares();
+        int numHorizontalSquares = canvas.getNumberOfColumns();
         individualSquaresToSave = canvas.getIndividualSquares();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -173,7 +173,7 @@ public class FileManager {
     // To comment or remove on final version
     public void getInfo() {
         int numVerticalLines = canvas.getNumVerticalLines();
-        int numHorizontalSquares = canvas.getNumHorizontalSquares();
+        int numHorizontalSquares = canvas.getNumberOfColumns();
         Rectangle[][] individualSquares = canvas.getIndividualSquares();
 
         for (int i = 0; i < numVerticalLines; i++) {

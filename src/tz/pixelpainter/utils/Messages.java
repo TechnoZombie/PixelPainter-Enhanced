@@ -1,10 +1,13 @@
 package tz.pixelpainter.utils;
 
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Text;
+
 public class Messages {
 
-    public void userText() {
+    public void instructionsTable() {
         System.out.println(
-                        "+---------------------------------------------------+\n" +
+                "+---------------------------------------------------+\n" +
                         "|             Welcome to PixelPainter!              |\n" +
                         "+----------------------+----------------------------|\n" +
                         "|HOW TO MOVE:          |FILE:                       |\n" +
@@ -20,24 +23,22 @@ public class Messages {
                         "| KEY 4: BLUE          | KEY 9: MAGENTA             |\n" +
                         "| KEY 5: CYAN          | KEY 0: WHITE               |\n" +
                         "+---------------------------------------------------+\n"
-
         );
-
     }
 
     public void imageSaved() {
         System.out.println(
                 "+-----------------------+\n" +
-                "| IMAGE SAVED!          |\n" +
-                "+-----------------------+"
+                        "| IMAGE SAVED!          |\n" +
+                        "+-----------------------+"
         );
     }
 
     public void imageLoaded() {
         System.out.println(
                 "+-----------------------+\n" +
-                "| IMAGE LOADED!         |\n" +
-                "+-----------------------+"
+                        "| IMAGE LOADED!         |\n" +
+                        "+-----------------------+"
         );
     }
 
@@ -48,25 +49,25 @@ public class Messages {
     public void pngExported() {
         System.out.println(
                 "+-----------------------+\n" +
-                "| IMAGE SAVED AS PNG!   |\n" +
-                "+-----------------------+"
+                        "| IMAGE SAVED AS PNG!   |\n" +
+                        "+-----------------------+"
         );
     }
 
     public void areYouSureClear() {
         System.out.println(
                 "+-----------------------+\n" +
-                "| CLEAR CANVAS:         |\n"+
-                "|  ARE YOU SURE? (Y/N): |\n"+
-                "+-----------------------+"
+                        "| CLEAR CANVAS:         |\n" +
+                        "|  ARE YOU SURE? (Y/N): |\n" +
+                        "+-----------------------+"
         );
     }
 
     public void areYouSureOverwrite() {
         System.out.println(
                 "+-----------------------+\n" +
-                        "| OVERWRITE IMAGE:      |\n"+
-                        "|  ARE YOU SURE? (Y/N): |\n"+
+                        "| OVERWRITE IMAGE:      |\n" +
+                        "|  ARE YOU SURE? (Y/N): |\n" +
                         "+-----------------------+"
         );
     }
@@ -74,19 +75,16 @@ public class Messages {
     public void canvasCleared() {
         System.out.println(
                 "+-----------------------+\n" +
-                "| CANVAS CLEARED!       |\n" +
-                "+-----------------------+"
-        );
-    }
-    public void actionCancelled() {
-        System.out.println(
-                "+-----------------------+\n" +
-                "| ACTION WAS CANCELLED! |\n" +
-                "+-----------------------+"
+                        "| CANVAS CLEARED!       |\n" +
+                        "+-----------------------+"
         );
     }
 
-    public void dragPaintingStatus(){
-        System.out.println("DRAG PAINTING IS: ");
+    public void actionCancelled() {
+        System.out.println(
+                "+-----------------------+\n" +
+                        "| ACTION WAS CANCELLED! |\n" +
+                        "+-----------------------+"
+        );
     }
 }

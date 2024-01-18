@@ -7,7 +7,7 @@ public class Cursor {
     private Rectangle cursor;
 
     public Cursor(int cursorSize) {
-        cursor = new Rectangle(1, 1, cursorSize, cursorSize);
+        cursor = new Rectangle(10, 10, cursorSize, cursorSize);
     }
 
     public void cursorFill() {
