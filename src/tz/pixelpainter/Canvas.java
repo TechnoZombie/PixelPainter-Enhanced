@@ -54,7 +54,7 @@ public class Canvas {
 
         Generators generators = new Generators(width,height,pixelSize);
         generators.wallpaperGenerator();
-        generators.tableGenerator(1,12,170,pixelSize);
+        generators.tableGenerator();
 
         loadTools();
         gridGenerator();

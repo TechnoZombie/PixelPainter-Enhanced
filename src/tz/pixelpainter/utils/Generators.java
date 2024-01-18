@@ -24,13 +24,16 @@ public class Generators {
         wallpaper.fill();
     }
 
-    public void tableGenerator(int cols, int lines, int cellWidth, int cellHeight) {
-        tableOutlineGenerator(cols, lines, cellWidth, cellHeight);
+    public void tableGenerator() {
+        tableOutlineGenerator();
         tableTextGenerator();
     }
 
-    public void tableOutlineGenerator(int cols, int lines, int cellWidth, int cellHeight) {
-
+    private void tableOutlineGenerator() {
+int cols = 1;
+int lines = 12;
+int cellWidth = 170;
+int cellHeight = pixelSize;
         // Initialize the two-dimensional array with the correct size
         Rectangle[][] tableCells = new Rectangle[lines][cols];
 
@@ -52,7 +55,7 @@ public class Generators {
         }
     }
 
-    public void tableTextGenerator() {
+    private void tableTextGenerator() {
         String splashscreen = "Welcome to PixelPainter!";
 
         // v = lef and right
