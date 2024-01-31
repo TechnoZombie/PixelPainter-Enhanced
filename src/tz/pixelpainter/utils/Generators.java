@@ -70,7 +70,7 @@ int cellHeight = pixelSize;
         text.grow(200, 50);
 
         String[] instructionItems = {
-                "| PIXELPAINTER! |",
+                "PIXELPAINTER!",
                 "  ",
                 "MOVEMENT AND PAINTING",
                 "W-A-S-D: Move",

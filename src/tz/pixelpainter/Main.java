@@ -9,6 +9,8 @@ public class Main {
         //for deployment, pixelSize will be hardcoded
         int pixelSize = 20;
 
+        //Splashscreen splashscreen = new Splashscreen();
+        //splashscreen.load();
         Canvas canvas = new Canvas();
         canvas.start(width, height, pixelSize);
 
