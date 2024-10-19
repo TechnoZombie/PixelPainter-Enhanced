@@ -61,7 +61,7 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_I -> fileManager.getInfo();
 
-            //CHANGE ME
+            // TODO: CHANGE ME
             case KeyboardEvent.KEY_UP -> coloring.colorLightGray();
 
             case KeyboardEvent.KEY_O -> confirmationDialogs.clearConfirmationDialog();

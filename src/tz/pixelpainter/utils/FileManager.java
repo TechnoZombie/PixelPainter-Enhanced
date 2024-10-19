@@ -12,14 +12,12 @@ import java.io.*;
 public class FileManager {
 
     private final Canvas canvas;
-    private Rectangle[][] individualSquaresToSave;
     private final Messages messages;
     private ColorProcessor colorProcessor;
     private ConfirmationDialogs confirmationDialogs;
     String filePath = "resources/image.txt";
 
-    public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages, ColorProcessor colorProcessor, ConfirmationDialogs confirmationDialogs) {
-        this.individualSquaresToSave = individualSquaresToSave;
+    public FileManager(Canvas canvas, Messages messages, ColorProcessor colorProcessor, ConfirmationDialogs confirmationDialogs) {
         this.canvas = canvas;
         this.messages = messages;
         this.colorProcessor = colorProcessor;
@@ -27,38 +25,27 @@ public class FileManager {
     }
 
     public void saveFile() {
-
         File file = new File(filePath);
 
-        if (file.exists()) {
-            confirmationDialogs.overwriteConfirmationDialog();
-        } else if (!file.exists()) {
-            saveFileLogic();
+        if (file.exists() && !confirmationDialogs.overwriteConfirmationDialog()) {
+            return; // If user chooses not to overwrite, exit
         }
+        saveFileLogic();
     }
 
-    public void saveFileLogic() {
-        int numVerticalLines = canvas.getNumVerticalLines();
-        int numHorizontalSquares = canvas.getNumberOfColumns();
-        individualSquaresToSave = canvas.getIndividualSquares();
-
+    void saveFileLogic() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (int i = 0; i < numVerticalLines; i++) {
-                for (int j = 0; j < numHorizontalSquares; j++) {
-                    if (individualSquaresToSave[i][j].isFilled()) {
-
-                        Color squareColor = individualSquaresToSave[i][j].getColor();
-                        String color = colorProcessor.encodeColor(squareColor.getRed(), squareColor.getGreen(), squareColor.getBlue());
-
-                        writer.write(individualSquaresToSave[i][j] + "Color:");
-                        writer.write(color + ";\n");
+            for (Rectangle[] row : canvas.getIndividualSquares()) {
+                for (Rectangle square : row) {
+                    if (square.isFilled()) {
+                        String color = colorProcessor.encodeColor(square.getColor().getRed(), square.getColor().getGreen(), square.getColor().getBlue());
+                        writer.write(String.format("%s Color:%s;\n", square, color));
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void loadFile() {
@@ -66,22 +53,7 @@ public class FileManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("Rectangle")) {
-
-                    // Extract coordinates
-                    int x = coordinateExtractor("x=", ",", line);
-                    int y = coordinateExtractor("y=", ",", line);
-                    int w = coordinateExtractor("width=", ",", line);
-
-                    // Extract color
-                    String color = line.split("Color:")[1].split(";")[0];
-
-                    // Convert coordinates into 2D array index
-                    int iX = coordinateConverter(x, w);
-                    int iY = coordinateConverter(y, w);
-
-                    // Update canvas with the loaded data
-                    canvas.getIndividualSquares()[iY][iX].setColor(colorProcessor.colorTranslator(color));
-                    canvas.getIndividualSquares()[iY][iX].fill();
+                    processRectangleLine(line);
                 }
             }
 
@@ -89,8 +61,21 @@ public class FileManager {
 
         } catch (IOException e) {
             e.printStackTrace();
-            messages.featureUnavailable();
+            messages.noImageAvailableToLoad();
         }
+    }
+
+    private void processRectangleLine(String line) {
+        int x = coordinateExtractor("x=", ",", line);
+        int y = coordinateExtractor("y=", ",", line);
+        int w = coordinateExtractor("width=", ",", line);
+        String color = line.split("Color:")[1].split(";")[0];
+
+        int iX = coordinateConverter(x, w);
+        int iY = coordinateConverter(y, w);
+
+        canvas.getIndividualSquares()[iY][iX].setColor(colorProcessor.colorTranslator(color));
+        canvas.getIndividualSquares()[iY][iX].fill();
     }
 
     // Extracts coordinates from a string using regex
@@ -120,7 +105,7 @@ public class FileManager {
             graphics.translate(-boundingBox.getX(), -boundingBox.getY());
 
             // Drawing individual squares to the image within the bounding box
-            for (Rectangle[] row : individualSquaresToSave) {
+            for (Rectangle[] row : canvas.getIndividualSquares()) {
                 for (Rectangle square : row) {
                     if (square.isFilled()) {
                         ColorProcessor processor = new ColorProcessor();
@@ -134,7 +119,6 @@ public class FileManager {
             }
 
             graphics.dispose();
-            messages.pngExported();
 
             try {
                 ImageIO.write(image, "png", new File(filePath));
@@ -150,7 +134,7 @@ public class FileManager {
         int maxX = Integer.MIN_VALUE;
         int maxY = Integer.MIN_VALUE;
 
-        for (Rectangle[] row : individualSquaresToSave) {
+        for (Rectangle[] row : canvas.getIndividualSquares()) {
             for (Rectangle square : row) {
                 if (square.isFilled()) {
                     minX = Math.min(minX, square.getX());
