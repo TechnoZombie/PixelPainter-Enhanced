@@ -2,6 +2,7 @@ package tz.pixelpainter.utils;
 
 import tz.pixelpainter.Coloring;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Auxiliaries {
@@ -39,17 +40,27 @@ public class Auxiliaries {
         }
     }
 
-
-    public void overwriteConfirmationScanner() {
+    public void overwriteConfirmationDialog() {
         try {
-            messages.areYouSureOverwrite();
 
-            char response = scanner.next().charAt(0);
+            int response = JOptionPane.showConfirmDialog(
+                    null,
+                    "Are you sure you want to overwrite?",
+                    "Overwrite Confirmation", JOptionPane.YES_NO_OPTION);
 
-            if (response == 'Y' || response == 'y') {
-                fileManager.saveFileLogic();
+            if (response == JOptionPane.YES_OPTION) {
+                fileManager.saveFileLogic();// User chose "Yes"
+                JOptionPane.showMessageDialog(
+                        null,
+                        messages.imageSaved(),
+                        "Image Saved",
+                        JOptionPane.INFORMATION_MESSAGE);
             } else {
-                messages.actionCancelled();
+                JOptionPane.showMessageDialog(
+                        null,
+                        messages.actionCancelled(),
+                        "Action Cancelled",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

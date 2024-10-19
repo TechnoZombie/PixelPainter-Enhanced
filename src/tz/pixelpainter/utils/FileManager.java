@@ -31,7 +31,7 @@ public class FileManager {
         File file = new File(filePath);
 
         if (file.exists()) {
-            auxiliaries.overwriteConfirmationScanner();
+            auxiliaries.overwriteConfirmationDialog();
         } else if (!file.exists()) {
             saveFileLogic();
         }
@@ -58,7 +58,7 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        messages.imageSaved();
+
     }
 
     public void loadFile() {
