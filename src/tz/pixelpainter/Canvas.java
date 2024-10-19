@@ -20,7 +20,7 @@ public class Canvas {
     private Messages messages;
     private Movement movement;
     private Coloring coloring;
-    private Auxiliaries auxiliaries;
+    private ConfirmationDialogs confirmationDialogs;
 
     public int getWidth() {
         return width;
@@ -52,7 +52,7 @@ public class Canvas {
         this.height = height;
         this.pixelSize = pixelSize;
 
-        Generators generators = new Generators(width,height,pixelSize);
+        Generators generators = new Generators(width, height, pixelSize);
         generators.wallpaperGenerator();
         generators.tableGenerator();
 
@@ -82,16 +82,16 @@ public class Canvas {
         coloring = new Coloring(movement, cursor, this);
         messages = new Messages();
         colorProcessor = new ColorProcessor();
-        auxiliaries = new Auxiliaries(messages, coloring);
-        fileManager = new FileManager(this, individualSquares, messages, colorProcessor, auxiliaries);
-        auxiliaries.setFileManager(fileManager);
-        keyboardController = new KeyboardController(movement, coloring, fileManager, auxiliaries);
+        confirmationDialogs = new ConfirmationDialogs(messages, coloring);
+        fileManager = new FileManager(this, individualSquares, messages, colorProcessor, confirmationDialogs);
+        confirmationDialogs.setFileManager(fileManager);
+        keyboardController = new KeyboardController(movement, coloring, fileManager, confirmationDialogs);
     }
 
     // Creates grid of squares
     public void gridGenerator() {
 
-        Rectangle gridBase = new Rectangle(5, 5, width +10, height +10);
+        Rectangle gridBase = new Rectangle(5, 5, width + 10, height + 10);
         gridBase.setColor(Color.WHITE);
         gridBase.fill();
 
@@ -112,8 +112,6 @@ public class Canvas {
             }
         }
     }
-
-
 }
 
 

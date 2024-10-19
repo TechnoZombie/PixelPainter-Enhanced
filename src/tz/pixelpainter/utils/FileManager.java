@@ -15,15 +15,15 @@ public class FileManager {
     private Rectangle[][] individualSquaresToSave;
     private final Messages messages;
     private ColorProcessor colorProcessor;
-    private Auxiliaries auxiliaries;
+    private ConfirmationDialogs confirmationDialogs;
     String filePath = "resources/image.txt";
 
-    public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages, ColorProcessor colorProcessor, Auxiliaries auxiliaries) {
+    public FileManager(Canvas canvas, Rectangle[][] individualSquaresToSave, Messages messages, ColorProcessor colorProcessor, ConfirmationDialogs confirmationDialogs) {
         this.individualSquaresToSave = individualSquaresToSave;
         this.canvas = canvas;
         this.messages = messages;
         this.colorProcessor = colorProcessor;
-        this.auxiliaries = auxiliaries;
+        this.confirmationDialogs = confirmationDialogs;
     }
 
     public void saveFile() {
@@ -31,7 +31,7 @@ public class FileManager {
         File file = new File(filePath);
 
         if (file.exists()) {
-            auxiliaries.overwriteConfirmationScanner();
+            confirmationDialogs.overwriteConfirmationDialog();
         } else if (!file.exists()) {
             saveFileLogic();
         }
@@ -58,7 +58,7 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        messages.imageSaved();
+
     }
 
     public void loadFile() {

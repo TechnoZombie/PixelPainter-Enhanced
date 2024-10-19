@@ -91,7 +91,7 @@ int cellHeight = pixelSize;
             menuItem.setColor(Color.WHITE);
             menuItem.draw();
             heightAlignment = heightAlignment + 20;
-            System.out.println(heightAlignment);
+            //System.out.println(heightAlignment);
         }
 
 
