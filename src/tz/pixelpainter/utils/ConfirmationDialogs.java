@@ -23,7 +23,7 @@ public class ConfirmationDialogs {
         try {
             int response = JOptionPane.showConfirmDialog(
                     null,
-                    "Clear canvas. \n Are you sure?",
+                    "Are you sure?",
                     "Clear Canvas",
                     JOptionPane.YES_NO_OPTION
 
@@ -43,7 +43,7 @@ public class ConfirmationDialogs {
 
             int response = JOptionPane.showConfirmDialog(
                     null,
-                    "Are you sure you want to overwrite?",
+                    "Are you sure?",
                     "Overwrite Confirmation", JOptionPane.YES_NO_OPTION);
 
             if (response == JOptionPane.YES_OPTION) {
