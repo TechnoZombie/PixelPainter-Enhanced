@@ -39,7 +39,7 @@ public class Messages {
     }
 
     public String pngExported() {
-        return "Image saved as .png!";
+        return ".png exported!";
     }
 
     public String actionCancelled() {
@@ -48,5 +48,9 @@ public class Messages {
 
     public String savingCancelled() {
         return "Image not saved.";
+    }
+
+    public void noImageAvailableToLoad() {
+        System.out.println("No image available to load");
     }
 }

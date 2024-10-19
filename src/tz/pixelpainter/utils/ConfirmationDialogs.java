@@ -31,14 +31,13 @@ public class ConfirmationDialogs {
 
             if (response == JOptionPane.YES_OPTION) {
                 coloring.clearCanvas();
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void overwriteConfirmationDialog() {
+    public boolean overwriteConfirmationDialog() {
         try {
 
             int response = JOptionPane.showConfirmDialog(
@@ -57,6 +56,7 @@ public class ConfirmationDialogs {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return false;
     }
 
     public void loadConfirmationDialog() {
@@ -70,12 +70,6 @@ public class ConfirmationDialogs {
 
             if (response == JOptionPane.YES_OPTION) {
                 fileManager.loadFile();
-                JOptionPane.showMessageDialog(
-                        null,
-                        messages.imageLoaded(),
-                        "Image Loaded",
-                        JOptionPane.INFORMATION_MESSAGE);
-
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -92,6 +86,12 @@ public class ConfirmationDialogs {
 
             if (response == JOptionPane.YES_OPTION) {
                 fileManager.exportToPng("resources/savedImage.png");
+                JOptionPane.showMessageDialog(
+                        null,
+                        messages.pngExported(),
+                        "Export confirmation",
+                        JOptionPane.INFORMATION_MESSAGE);
+
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

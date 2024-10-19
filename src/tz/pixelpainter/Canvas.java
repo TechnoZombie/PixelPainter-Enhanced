@@ -83,7 +83,7 @@ public class Canvas {
         messages = new Messages();
         colorProcessor = new ColorProcessor();
         confirmationDialogs = new ConfirmationDialogs(messages, coloring);
-        fileManager = new FileManager(this, individualSquares, messages, colorProcessor, confirmationDialogs);
+        fileManager = new FileManager(this, messages, colorProcessor, confirmationDialogs);
         confirmationDialogs.setFileManager(fileManager);
         keyboardController = new KeyboardController(movement, coloring, fileManager, confirmationDialogs);
     }
