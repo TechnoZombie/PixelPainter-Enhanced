@@ -6,7 +6,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import tz.pixelpainter.Movement;
 import tz.pixelpainter.Coloring;
-import tz.pixelpainter.utils.Auxiliaries;
+import tz.pixelpainter.utils.ConfirmationDialogs;
 import tz.pixelpainter.utils.FileManager;
 
 public class KeyboardController implements KeyboardHandler {
@@ -14,13 +14,13 @@ public class KeyboardController implements KeyboardHandler {
     private final Movement movement;
     private final Coloring coloring;
     private final FileManager fileManager;
-    private final Auxiliaries auxiliaries;
+    private final ConfirmationDialogs confirmationDialogs;
 
-    public KeyboardController(Movement movement, Coloring coloring, FileManager fileManager, Auxiliaries auxiliaries) {
+    public KeyboardController(Movement movement, Coloring coloring, FileManager fileManager, ConfirmationDialogs confirmationDialogs) {
         this.movement = movement;
         this.coloring = coloring;
         this.fileManager = fileManager;
-        this.auxiliaries = auxiliaries;
+        this.confirmationDialogs = confirmationDialogs;
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -57,14 +57,14 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_E -> coloring.erase();
 
-            case KeyboardEvent.KEY_C -> fileManager.exportToPng("resources/savedImage.png");
+            case KeyboardEvent.KEY_C -> confirmationDialogs.exportConfirmationDialog();
 
             case KeyboardEvent.KEY_I -> fileManager.getInfo();
 
             //CHANGE ME
             case KeyboardEvent.KEY_UP -> coloring.colorLightGray();
 
-            case KeyboardEvent.KEY_O -> auxiliaries.clearConfirmationScanner();
+            case KeyboardEvent.KEY_O -> confirmationDialogs.clearConfirmationDialog();
 
             case KeyboardEvent.KEY_1 -> coloring.colorBlack();
 
@@ -88,8 +88,9 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_Z -> fileManager.saveFile();
 
-            case KeyboardEvent.KEY_X -> fileManager.loadFile();
-            }
+            case KeyboardEvent.KEY_X -> confirmationDialogs.loadConfirmationDialog();
+
+        }
         }
 
     @Override

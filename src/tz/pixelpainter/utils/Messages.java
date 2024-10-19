@@ -26,51 +26,27 @@ public class Messages {
     }
 
     public String imageSaved() {
-        return "IMAGE SAVED!";
+        return "Image Saved!";
     }
 
-    public void imageLoaded() {
-        System.out.println(
-                """
-                        +-----------------------+
-                        | IMAGE LOADED!         |
-                        +-----------------------+"""
-        );
+    public String imageLoaded() {
+        return "Image Loaded!";
+
     }
 
     public void featureUnavailable() {
         System.out.println("FEATURE IS NOT YET AVAILABLE.");
     }
 
-    public void pngExported() {
-        System.out.println(
-                """
-                        +-----------------------+
-                        | IMAGE SAVED AS PNG!   |
-                        +-----------------------+"""
-        );
-    }
-
-    public void areYouSureClear() {
-        System.out.println(
-                """
-                        +-----------------------+
-                        | CLEAR CANVAS:         |
-                        |  ARE YOU SURE? (Y/N): |
-                        +-----------------------+"""
-        );
-    }
-
-    public void canvasCleared() {
-        System.out.println(
-                """
-                        +-----------------------+
-                        | CANVAS CLEARED!       |
-                        +-----------------------+"""
-        );
+    public String pngExported() {
+        return "Image saved as .png!";
     }
 
     public String actionCancelled() {
-        return "Saving cancelled.";
+        return "Action cancelled.";
+    }
+
+    public String savingCancelled() {
+        return "Image not saved.";
     }
 }
