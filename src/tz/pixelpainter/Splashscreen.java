@@ -1,8 +1,8 @@
 package tz.pixelpainter;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.technozombie.simplegraphz.graphics.Rectangle;
+import org.technozombie.simplegraphz.graphics.Color;
+import org.technozombie.simplegraphz.graphics.Text;
 import tz.pixelpainter.utils.Generators;
 
 public class Splashscreen {

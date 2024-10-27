@@ -1,7 +1,8 @@
 package tz.pixelpainter;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
+import org.technozombie.simplegraphz.graphics.Color;
+import org.technozombie.simplegraphz.graphics.Rectangle;
 
 public class Cursor {
     private Rectangle cursor;

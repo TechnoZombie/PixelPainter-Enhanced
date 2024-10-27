@@ -1,7 +1,8 @@
 package tz.pixelpainter;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.technozombie.simplegraphz.graphics.Rectangle;
+import org.technozombie.simplegraphz.graphics.Color;
+
 import tz.pixelpainter.hid.KeyboardController;
 import tz.pixelpainter.utils.*;
 

@@ -1,7 +1,7 @@
 package tz.pixelpainter.utils;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.technozombie.simplegraphz.graphics.Color;
+import org.technozombie.simplegraphz.graphics.Rectangle;
 import tz.pixelpainter.Canvas;
 
 import javax.imageio.ImageIO;

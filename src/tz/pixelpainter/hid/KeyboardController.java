@@ -1,9 +1,9 @@
 package tz.pixelpainter.hid;
 
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.technozombie.simplegraphz.keyboard.Keyboard;
+import org.technozombie.simplegraphz.keyboard.KeyboardEvent;
+import org.technozombie.simplegraphz.keyboard.KeyboardEventType;
+import org.technozombie.simplegraphz.keyboard.KeyboardHandler;
 import tz.pixelpainter.Movement;
 import tz.pixelpainter.Coloring;
 import tz.pixelpainter.utils.ConfirmationDialogs;

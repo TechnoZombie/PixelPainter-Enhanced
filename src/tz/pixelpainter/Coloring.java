@@ -1,6 +1,6 @@
 package tz.pixelpainter;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.technozombie.simplegraphz.graphics.Color;
 
 public class Coloring {
 
