@@ -15,16 +15,16 @@ public class UserInterfaceManager {
     }
 
     public void generateUserInterface() {
-        canvas.addMenu("File");
-        canvas.addItemToMenu("File", "Exit", e -> System.exit(0)); // Exit the program when "Exit" is clicked);
+        canvas.addMenu(MenuConstants.FILE);
+        canvas.addItemToMenu(MenuConstants.FILE, MenuConstants.EXIT, e -> System.exit(0)); // Exit the program when "Exit" is clicked);
 
-        canvas.addMenu("Edit");
-        canvas.addItemToMenu("Edit", "Clear Canvas", e -> confirmationDialogs.clearConfirmationDialog());
+        canvas.addMenu(MenuConstants.EDIT);
+        canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CLEAR_CANVAS, e -> confirmationDialogs.clearConfirmationDialog());
 
-        canvas.addMenu("Manager");
-        canvas.addMenuSeparator("Manager");
-        canvas.addItemToMenu("Manager", "Load file", e -> confirmationDialogs.loadConfirmationDialog());
-        canvas.addItemToMenu("Manager", "Save file", e -> fileManager.saveFile());
-        canvas.addItemToMenu("Manager", "Export as PNG", e -> fileManager.exportToPng("resources/savedImageFromMenu.png"));
+        canvas.addMenu(MenuConstants.MANAGER);
+        canvas.addMenuSeparator(MenuConstants.MANAGER);
+        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.LOAD_FILE, e -> confirmationDialogs.loadConfirmationDialog());
+        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.SAVE_FIE, e -> fileManager.saveFile());
+        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.EXPORT_PNG, e -> fileManager.exportToPng("resources/savedImageFromMenu.png"));
     }
 }
