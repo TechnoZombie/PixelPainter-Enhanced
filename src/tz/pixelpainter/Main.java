@@ -6,11 +6,7 @@ import tz.pixelpainter.utils.FileManager;
 public class Main {
     public static void main(String[] args) {
 
-        Canvas canvas = Canvas.getInstance();
-        canvas.addToFileMenu("Test", e -> System.out.println("Test!!!"));
 
-
-        canvas.addMenuAndItem("Pirocas", "Caralhos", e -> System.out.println("TUDO GAITAS!!"));
 
         int width = 600;
         int height = 400;

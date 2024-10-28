@@ -1,9 +1,7 @@
 package tz.pixelpainter;
 
-import org.technozombie.simplegraphz.graphics.Canvas;
 import org.technozombie.simplegraphz.graphics.Rectangle;
 import org.technozombie.simplegraphz.graphics.Color;
-
 import tz.pixelpainter.hid.KeyboardController;
 import tz.pixelpainter.utils.*;
 
@@ -48,24 +46,19 @@ public class Whiteboard {
         return numberOfLines;
     }
 
-
     public void start(int width, int height, int pixelSize) {
         this.width = width;
         this.height = height;
         this.pixelSize = pixelSize;
-
-        Canvas canvas = Canvas.getInstance();
-        canvas.addMenuAndItem("File Manager",
-                "Export to .png",
-                e -> fileManager.exportToPng("resources/savedImageFromMenu.png"));
-
+        loadTools();
+        UserInterfaceManager userInterfaceManager = new UserInterfaceManager(fileManager, confirmationDialogs);
+        userInterfaceManager.generateUserInterface();
         Generators generators = new Generators(width, height, pixelSize);
         generators.wallpaperGenerator();
         generators.tableGenerator();
-
-        loadTools();
         gridGenerator();
-
+        cursor.cursorFill(); //Filling the cursor needs to come last so that it over-imposes other elements of the grid
+        messages.instructionsTable();
 
         //Loads a picture from file
         //Picture picture = new Picture(5, 5, "resources/fff.png");
@@ -76,11 +69,6 @@ public class Whiteboard {
         //picture.grow(0, 200);
 
         //picture.draw();
-
-        //Filling the cursor needs to come last so that it over-imposes other elements of the grid
-        cursor.cursorFill();
-
-        messages.instructionsTable();
     }
 
     public void loadTools() {
