@@ -1,5 +1,5 @@
 1. splash screen
-1.1. advance to canvas on key press
+1.1. advance to whiteboard on key press
 
 2. clean up wallpaper generator
 

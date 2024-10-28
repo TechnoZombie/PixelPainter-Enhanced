@@ -3,7 +3,7 @@ package tz.pixelpainter;
 public class Movement {
 
     private final Cursor cursor;
-    private final Canvas canvas;
+    private final Whiteboard whiteboard;
 
     public int getCursorIndexX() {
         return cursorIndexX;
@@ -16,35 +16,35 @@ public class Movement {
     private int cursorIndexX = 0;
     private int cursorIndexY = 0;
 
-    public Movement(Cursor cursor, Canvas canvas) {
+    public Movement(Cursor cursor, Whiteboard whiteboard) {
         this.cursor = cursor;
-        this.canvas = canvas;
+        this.whiteboard = whiteboard;
     }
 
     public void moveUp() {
         if (cursor.getY() > 10) {
-            cursor.translate(0, -canvas.getPixelSize());
+            cursor.translate(0, -whiteboard.getPixelSize());
             cursorIndexY--;
         }
     }
 
     public void moveLeft() {
-        if (cursor.getX() > canvas.getPixelSize()) {
-            cursor.translate(-canvas.getPixelSize(), 0);
+        if (cursor.getX() > whiteboard.getPixelSize()) {
+            cursor.translate(-whiteboard.getPixelSize(), 0);
             cursorIndexX--;
         }
     }
 
     public void moveDown() {
-        if (cursor.getY() < canvas.getHeight() - canvas.getPixelSize()) {
-            cursor.translate(0, canvas.getPixelSize());
+        if (cursor.getY() < whiteboard.getHeight() - whiteboard.getPixelSize()) {
+            cursor.translate(0, whiteboard.getPixelSize());
             cursorIndexY++;
         }
     }
 
     public void moveRight() {
-        if (cursor.getX() < canvas.getWidth() - canvas.getPixelSize()) {
-            cursor.translate(canvas.getPixelSize(), 0);
+        if (cursor.getX() < whiteboard.getWidth() - whiteboard.getPixelSize()) {
+            cursor.translate(whiteboard.getPixelSize(), 0);
             cursorIndexX++;
         }
     }

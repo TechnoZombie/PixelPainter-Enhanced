@@ -6,7 +6,7 @@ public class Coloring {
 
     private final Movement movement;
     private final Cursor cursor;
-    private final Canvas canvas;
+    private final Whiteboard whiteboard;
     Color chosenColor = Color.BLACK;
     Color gridColor = Color.BLACK;
     int cursorSquareX;
@@ -19,18 +19,18 @@ public class Coloring {
         System.out.println("Drag painting is: " + dragging);
     }*/
 
-    public Coloring(Movement movement, Cursor cursor, Canvas canvas) {
+    public Coloring(Movement movement, Cursor cursor, Whiteboard whiteboard) {
         this.movement = movement;
         this.cursor = cursor;
-        this.canvas = canvas;
+        this.whiteboard = whiteboard;
     }
 
     public void paint() {
         cursorSquareX = movement.getCursorIndexX();
         cursorSquareY = movement.getCursorIndexY();
 
-        canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].setColor(chosenColor);
-        canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].fill();
+        whiteboard.getIndividualSquares()[cursorSquareY][cursorSquareX].setColor(chosenColor);
+        whiteboard.getIndividualSquares()[cursorSquareY][cursorSquareX].fill();
 
         cursor.cursorReFill();
     }
@@ -39,23 +39,23 @@ public class Coloring {
         cursorSquareX = movement.getCursorIndexX();
         cursorSquareY = movement.getCursorIndexY();
 
-        if (canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].isFilled()) {
-            canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].delete();
-            canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].setColor(gridColor);
-            canvas.getIndividualSquares()[cursorSquareY][cursorSquareX].draw();
+        if (whiteboard.getIndividualSquares()[cursorSquareY][cursorSquareX].isFilled()) {
+            whiteboard.getIndividualSquares()[cursorSquareY][cursorSquareX].delete();
+            whiteboard.getIndividualSquares()[cursorSquareY][cursorSquareX].setColor(gridColor);
+            whiteboard.getIndividualSquares()[cursorSquareY][cursorSquareX].draw();
         }
         cursor.cursorReFill();
     }
 
     public void clearCanvas() {
-        int canvasWidth = canvas.getNumberOfColumns();
-        int canvasHeight = canvas.getNumVerticalLines();
+        int canvasWidth = whiteboard.getNumberOfColumns();
+        int canvasHeight = whiteboard.getNumVerticalLines();
 
         for (int i = 0; i < canvasHeight; i++) {
             for (int j = 0; j < canvasWidth; j++) {
-                canvas.getIndividualSquares()[i][j].delete();
-                canvas.getIndividualSquares()[i][j].setColor(gridColor);
-                canvas.getIndividualSquares()[i][j].draw();
+                whiteboard.getIndividualSquares()[i][j].delete();
+                whiteboard.getIndividualSquares()[i][j].setColor(gridColor);
+                whiteboard.getIndividualSquares()[i][j].draw();
             }
         }
         cursor.cursorReFill();

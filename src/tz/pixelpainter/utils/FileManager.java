@@ -2,7 +2,7 @@ package tz.pixelpainter.utils;
 
 import org.technozombie.simplegraphz.graphics.Color;
 import org.technozombie.simplegraphz.graphics.Rectangle;
-import tz.pixelpainter.Canvas;
+import tz.pixelpainter.Whiteboard;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -11,18 +11,19 @@ import java.io.*;
 
 public class FileManager {
 
-    private final Canvas canvas;
+    private final Whiteboard whiteboard;
     private final Messages messages;
     private ColorProcessor colorProcessor;
     private ConfirmationDialogs confirmationDialogs;
     String filePath = "resources/image.txt";
 
-    public FileManager(Canvas canvas, Messages messages, ColorProcessor colorProcessor, ConfirmationDialogs confirmationDialogs) {
-        this.canvas = canvas;
+    public FileManager(Whiteboard whiteboard, Messages messages, ColorProcessor colorProcessor, ConfirmationDialogs confirmationDialogs) {
+        this.whiteboard = whiteboard;
         this.messages = messages;
         this.colorProcessor = colorProcessor;
         this.confirmationDialogs = confirmationDialogs;
     }
+
 
     public void saveFile() {
         File file = new File(filePath);
@@ -35,7 +36,7 @@ public class FileManager {
 
     void saveFileLogic() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Rectangle[] row : canvas.getIndividualSquares()) {
+            for (Rectangle[] row : whiteboard.getIndividualSquares()) {
                 for (Rectangle square : row) {
                     if (square.isFilled()) {
                         String color = colorProcessor.encodeColor(square.getColor().getRed(), square.getColor().getGreen(), square.getColor().getBlue());
@@ -74,8 +75,8 @@ public class FileManager {
         int iX = coordinateConverter(x, w);
         int iY = coordinateConverter(y, w);
 
-        canvas.getIndividualSquares()[iY][iX].setColor(colorProcessor.colorTranslator(color));
-        canvas.getIndividualSquares()[iY][iX].fill();
+        whiteboard.getIndividualSquares()[iY][iX].setColor(colorProcessor.colorTranslator(color));
+        whiteboard.getIndividualSquares()[iY][iX].fill();
     }
 
     // Extracts coordinates from a string using regex
@@ -87,6 +88,7 @@ public class FileManager {
     public int coordinateConverter(int n, int w) {
         return (n - 1) / w;
     }
+
 
     public void exportToPng(String filePath) {
         saveFile(); // Needs to call saveFile() first to prevent empty individualSquaresToSave from throwing nullPointerException;
@@ -105,7 +107,7 @@ public class FileManager {
             graphics.translate(-boundingBox.getX(), -boundingBox.getY());
 
             // Drawing individual squares to the image within the bounding box
-            for (Rectangle[] row : canvas.getIndividualSquares()) {
+            for (Rectangle[] row : whiteboard.getIndividualSquares()) {
                 for (Rectangle square : row) {
                     if (square.isFilled()) {
                         ColorProcessor processor = new ColorProcessor();
@@ -134,7 +136,7 @@ public class FileManager {
         int maxX = Integer.MIN_VALUE;
         int maxY = Integer.MIN_VALUE;
 
-        for (Rectangle[] row : canvas.getIndividualSquares()) {
+        for (Rectangle[] row : whiteboard.getIndividualSquares()) {
             for (Rectangle square : row) {
                 if (square.isFilled()) {
                     minX = Math.min(minX, square.getX());
@@ -156,9 +158,9 @@ public class FileManager {
     // Print information about individual painted squares by pressing key I
     // To comment or remove on final version
     public void getInfo() {
-        int numVerticalLines = canvas.getNumVerticalLines();
-        int numHorizontalSquares = canvas.getNumberOfColumns();
-        Rectangle[][] individualSquares = canvas.getIndividualSquares();
+        int numVerticalLines = whiteboard.getNumVerticalLines();
+        int numHorizontalSquares = whiteboard.getNumberOfColumns();
+        Rectangle[][] individualSquares = whiteboard.getIndividualSquares();
 
         for (int i = 0; i < numVerticalLines; i++) {
             for (int j = 0; j < numHorizontalSquares; j++) {

@@ -1,12 +1,13 @@
 package tz.pixelpainter;
 
+import org.technozombie.simplegraphz.graphics.Canvas;
 import org.technozombie.simplegraphz.graphics.Rectangle;
 import org.technozombie.simplegraphz.graphics.Color;
 
 import tz.pixelpainter.hid.KeyboardController;
 import tz.pixelpainter.utils.*;
 
-public class Canvas {
+public class Whiteboard {
 
     public Cursor cursor;
     private int width;
@@ -52,6 +53,11 @@ public class Canvas {
         this.width = width;
         this.height = height;
         this.pixelSize = pixelSize;
+
+        Canvas canvas = Canvas.getInstance();
+        canvas.addMenuAndItem("File Manager",
+                "Export to .png",
+                e -> fileManager.exportToPng("resources/savedImageFromMenu.png"));
 
         Generators generators = new Generators(width, height, pixelSize);
         generators.wallpaperGenerator();
