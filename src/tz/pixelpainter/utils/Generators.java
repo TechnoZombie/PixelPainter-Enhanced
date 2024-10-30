@@ -18,7 +18,8 @@ public class Generators {
     public void wallpaperGenerator() {
         //v = margin left to right
         //v1 = margin to top bottom
-        Rectangle wallpaper = new Rectangle(0, 0, width + 200, height + 20);
+        //Rectangle wallpaper = new Rectangle(0, 0, width + 200, height + 20); // sizing to accommodate instruction table
+        Rectangle wallpaper = new Rectangle(0, 0, width + 20, height + 20);
         wallpaper.setColor(Color.LIGHT_GRAY);
         wallpaper.draw();
         wallpaper.fill();

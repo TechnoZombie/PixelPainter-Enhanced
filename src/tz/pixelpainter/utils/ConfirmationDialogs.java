@@ -98,6 +98,13 @@ public class ConfirmationDialogs {
         }
     }
 
+    public void showKeyBinds() {
+        JOptionPane.showMessageDialog(
+                null,
+                messages.keyBindsMessage(),
+                "Keybinds",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
 }
 
 

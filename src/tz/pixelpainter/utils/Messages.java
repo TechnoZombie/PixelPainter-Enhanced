@@ -53,4 +53,20 @@ public class Messages {
     public void noImageAvailableToLoad() {
         System.out.println("No image available to load");
     }
+
+    public String keyBindsMessage() {
+        return """      
+                MOVEMENT AND ACTIONS:
+                W-A-S-D: Move
+                SPACE: Paint
+                KEY E: Erase Square
+
+                COLOR SELECTION:
+                KEY 1: Black        KEY 6: Yellow
+                KEY 2: Red          KEY 7: Orange
+                KEY 3: Green        KEY 8: Pink
+                KEY 4: Blue         KEY 9: Magenta
+                KEY 5: Cyan         KEY 0: White
+                """;
+    }
 }

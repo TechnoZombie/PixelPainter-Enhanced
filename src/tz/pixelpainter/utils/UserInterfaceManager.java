@@ -8,7 +8,6 @@ public class UserInterfaceManager {
     ConfirmationDialogs confirmationDialogs;
     Canvas canvas = Canvas.getInstance();
 
-
     public UserInterfaceManager(FileManager fileManager, ConfirmationDialogs confirmationDialogs) {
         this.fileManager = fileManager;
         this.confirmationDialogs = confirmationDialogs;
@@ -26,5 +25,9 @@ public class UserInterfaceManager {
         canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.LOAD_FILE, e -> confirmationDialogs.loadConfirmationDialog());
         canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.SAVE_FIE, e -> fileManager.saveFile());
         canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.EXPORT_PNG, e -> fileManager.exportToPng("resources/savedImageFromMenu.png"));
+        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.TAKE_SCREENSHOT, e -> canvas.saveToDisk("resources/screenshot.png"));
+
+        canvas.addMenu(MenuConstants.HELP);
+        canvas.addItemToMenu(MenuConstants.HELP, MenuConstants.KEYBINDS, e -> confirmationDialogs.showKeyBinds());
     }
 }
