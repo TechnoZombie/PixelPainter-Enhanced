@@ -1,10 +1,8 @@
-1. splash screen
-1.1. advance to whiteboard on key press
+# splash screen
+#advance to whiteboard on key press
 
-2. clean up wallpaper generator
+# Drag painting - click to start painting, drag cursor and paint, click to stop painting;
 
-3. code instruction manual to screen and not console
+# Painting with mouse
 
-4. Drag painting - click to start painting, drag cursor and paint, click to stop painting;
-
-5. Painting with mouse
+# Color selection from GUI

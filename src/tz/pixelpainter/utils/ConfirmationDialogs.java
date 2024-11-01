@@ -1,9 +1,11 @@
 package tz.pixelpainter.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import tz.pixelpainter.Coloring;
 
 import javax.swing.*;
 
+@Slf4j
 public class ConfirmationDialogs {
 
     private Messages messages;
@@ -33,6 +35,7 @@ public class ConfirmationDialogs {
                 coloring.clearCanvas();
             }
         } catch (Exception e) {
+            log.error("Error: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -54,6 +57,7 @@ public class ConfirmationDialogs {
                         JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
+            log.error("Error: ", e);
             throw new RuntimeException(e);
         }
         return false;
@@ -72,6 +76,7 @@ public class ConfirmationDialogs {
                 fileManager.loadFile();
             }
         } catch (Exception e) {
+            log.error("Error: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -94,6 +99,7 @@ public class ConfirmationDialogs {
 
             }
         } catch (Exception e) {
+            log.error("Error: ", e);
             throw new RuntimeException(e);
         }
     }
@@ -106,5 +112,4 @@ public class ConfirmationDialogs {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 }
-
 

@@ -35,6 +35,6 @@ public class UserInterfaceManager {
 
         canvas.addMenu(MenuConstants.HELP);
         canvas.addItemToMenu(MenuConstants.HELP, MenuConstants.KEYBINDS, e -> confirmationDialogs.showKeyBinds());
-
+        canvas.addItemToMenu(MenuConstants.HELP, "Show image info", e -> fileManager.getInfo());
     }
 }

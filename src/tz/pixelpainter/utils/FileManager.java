@@ -1,5 +1,6 @@
 package tz.pixelpainter.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.technozombie.simplegraphz.graphics.Color;
 import org.technozombie.simplegraphz.graphics.Rectangle;
 import tz.pixelpainter.Whiteboard;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+@Slf4j
 public class FileManager {
 
     private final Whiteboard whiteboard;
@@ -45,7 +47,7 @@ public class FileManager {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error writing file: ", e);
         }
     }
 
@@ -61,7 +63,7 @@ public class FileManager {
             messages.imageLoaded();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error loading file: ", e);
             messages.noImageAvailableToLoad();
         }
     }
@@ -125,7 +127,7 @@ public class FileManager {
             try {
                 ImageIO.write(image, "png", new File(filePath));
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("Error exporting to PNG: ", e);
             }
         }
     }
@@ -166,7 +168,10 @@ public class FileManager {
             for (int j = 0; j < numHorizontalSquares; j++) {
                 if (individualSquares[i][j].isFilled()) {
                     Rectangle square = individualSquares[i][j];
-                    System.out.println("X: " + square.getX() + ", Y: " + square.getY() + ", Color: " + square.getColor());
+                    Color color = square.getColor();
+                    String colorString = "R=" + color.getRed() + ", G=" + color.getGreen() + ", B=" + color.getBlue();
+                    log.info("X: " + square.getX() + ", Y: " + square.getY() + ", Color: " + colorString);
+                    System.out.println();
                 }
             }
 
