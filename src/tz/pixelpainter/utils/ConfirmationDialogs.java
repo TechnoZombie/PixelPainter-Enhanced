@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import tz.pixelpainter.Coloring;
 
 import javax.swing.*;
+import java.awt.*;
 
 @Slf4j
 public class ConfirmationDialogs {
@@ -106,5 +107,60 @@ public class ConfirmationDialogs {
                 JOptionPane.INFORMATION_MESSAGE
         );
     }
+
+    public void promptForColor() {
+        while (true) {
+            JPanel panel = new JPanel(new GridLayout(3, 2));
+
+            JTextField redField = new JTextField();
+            JTextField greenField = new JTextField();
+            JTextField blueField = new JTextField();
+
+            panel.add(new JLabel("Red (0-255):"));
+            panel.add(redField);
+            panel.add(new JLabel("Green (0-255):"));
+            panel.add(greenField);
+            panel.add(new JLabel("Blue (0-255):"));
+            panel.add(blueField);
+
+            int result = JOptionPane.showConfirmDialog(null, panel,
+                    "Enter RGB Values",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (result == JOptionPane.OK_OPTION) {
+                if (validateAndSetColor(redField, greenField, blueField)) {
+                    break;
+                }
+            } else if (result == JOptionPane.CANCEL_OPTION) {
+                break;
+            }
+        }
+    }
+
+    private boolean validateAndSetColor(JTextField redField, JTextField greenField, JTextField blueField) {
+        try {
+            int red = parseColorValue(redField.getText().trim(), "Red");
+            int green = parseColorValue(greenField.getText().trim(), "Green");
+            int blue = parseColorValue(blueField.getText().trim(), "Blue");
+
+            coloring.customColor(red, green, blue);
+            log.debug("Using custom color: " + "R=" + red + " G=" + green + " B=" + blue);
+            return true;
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
+    private int parseColorValue(String input, String colorName) throws NumberFormatException {
+        int value = Integer.parseInt(input);
+        if (value < 0 || value > 255) {
+            throw new NumberFormatException(colorName + " value must be between 0 and 255.");
+        }
+        return value;
+    }
+
 }
 

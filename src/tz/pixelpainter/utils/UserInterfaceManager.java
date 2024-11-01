@@ -25,6 +25,7 @@ public class UserInterfaceManager {
 
         canvas.addMenu(MenuConstants.EDIT);
         canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CLEAR_CANVAS, e -> confirmationDialogs.clearConfirmationDialog());
+        canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CREATE_CUSTOM_COLOR, e -> confirmationDialogs.promptForColor());
 
         canvas.addMenu(MenuConstants.MANAGER);
         canvas.addMenuSeparator(MenuConstants.MANAGER);
@@ -35,6 +36,6 @@ public class UserInterfaceManager {
 
         canvas.addMenu(MenuConstants.HELP);
         canvas.addItemToMenu(MenuConstants.HELP, MenuConstants.KEYBINDS, e -> confirmationDialogs.showKeyBinds());
-        canvas.addItemToMenu(MenuConstants.HELP, "Show image info", e -> fileManager.getInfo());
+        canvas.addItemToMenu(MenuConstants.HELP, "[DEV] Show image info", e -> fileManager.getInfo());
     }
 }

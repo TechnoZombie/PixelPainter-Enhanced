@@ -66,6 +66,10 @@ public class Coloring {
         cursor.cursorReFill();
     }
 
+public void customColor(int red, int green, int blue) {
+    Color customColor = new Color(red, green, blue);
+    setChosenColor(customColor);
+}
 
     public void colorBlack() {
         setChosenColor(Color.BLACK);
