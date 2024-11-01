@@ -41,6 +41,7 @@ public class FileManager {
             for (Rectangle[] row : whiteboard.getIndividualSquares()) {
                 for (Rectangle square : row) {
                     if (square.isFilled()) {
+                        // TODO: Bugfix - when saving with custom colors, it will save as BLACK.
                         String color = colorProcessor.encodeColor(square.getColor().getRed(), square.getColor().getGreen(), square.getColor().getBlue());
                         writer.write(String.format("%s Color:%s;\n", square, color));
                     }
@@ -112,11 +113,8 @@ public class FileManager {
             for (Rectangle[] row : whiteboard.getIndividualSquares()) {
                 for (Rectangle square : row) {
                     if (square.isFilled()) {
-                        ColorProcessor processor = new ColorProcessor();
                         Color colorToDecode = square.getColor();
-
-                        graphics.setColor(processor.decodeColor(colorToDecode));
-
+                        graphics.setColor(colorProcessor.decodeColor(colorToDecode));
                         graphics.fillRect(square.getX(), square.getY(), square.getWidth(), square.getHeight());
                     }
                 }

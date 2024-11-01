@@ -26,6 +26,7 @@ public class UserInterfaceManager {
         canvas.addMenu(MenuConstants.EDIT);
         canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CLEAR_CANVAS, e -> confirmationDialogs.clearConfirmationDialog());
         canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CREATE_CUSTOM_COLOR, e -> confirmationDialogs.promptForColor());
+        canvas.addItemToMenu(MenuConstants.EDIT, "Show color selector", e -> confirmationDialogs.swingColorSelector());
 
         canvas.addMenu(MenuConstants.MANAGER);
         canvas.addMenuSeparator(MenuConstants.MANAGER);

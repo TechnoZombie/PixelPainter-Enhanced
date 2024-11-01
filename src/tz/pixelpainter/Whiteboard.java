@@ -63,9 +63,9 @@ public class Whiteboard {
         cursor = new Cursor(pixelSize);
         movement = new Movement(cursor, this);
         coloring = new Coloring(movement, cursor, this);
+        colorProcessor = new ColorProcessor(coloring);
         messages = new Messages();
-        colorProcessor = new ColorProcessor();
-        confirmationDialogs = new ConfirmationDialogs(messages, coloring);
+        confirmationDialogs = new ConfirmationDialogs(messages, coloring, colorProcessor);
         fileManager = new FileManager(this, messages, colorProcessor, confirmationDialogs);
         confirmationDialogs.setFileManager(fileManager);
         keyboardController = new KeyboardController(movement, coloring, fileManager, confirmationDialogs);

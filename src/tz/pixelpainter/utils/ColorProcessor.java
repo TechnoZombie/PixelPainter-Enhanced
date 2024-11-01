@@ -1,11 +1,17 @@
 package tz.pixelpainter.utils;
 
 import org.technozombie.simplegraphz.graphics.Color;
+import tz.pixelpainter.Coloring;
 
 public class ColorProcessor {
+    private final Coloring coloring;
+
+    public ColorProcessor(Coloring coloring) {
+        this.coloring = coloring;
+    }
 
     public String encodeColor(int red, int green, int blue) {
-
+        // TODO: Enhancement - remove switch case to allow saving with custom colors;
         String colorString = red + ", " + green + ", " + blue;
 
         return switch (colorString) {
@@ -46,30 +52,15 @@ public class ColorProcessor {
         };
     }
 
+    /*
+    Convert simplegraphz colors to java.awt.Color colors
+     */
     public java.awt.Color decodeColor(Color squareColor) {
-        int red = squareColor.getRed();
-        int green = squareColor.getGreen();
-        int blue = squareColor.getBlue();
+        int r = squareColor.getRed();
+        int g = squareColor.getGreen();
+        int b = squareColor.getBlue();
 
-        String colorString = red + ", " + green + ", " + blue;
-
-        return switch (colorString) {
-            case "0, 0, 0" -> java.awt.Color.BLACK;
-            case "255, 0, 0" -> java.awt.Color.RED;
-            case "0, 255, 0" -> java.awt.Color.GREEN;
-            case "0, 0, 255" -> java.awt.Color.BLUE;
-            case "255, 255, 255" -> java.awt.Color.WHITE;
-            case "192, 192, 192" -> java.awt.Color.LIGHT_GRAY;
-            case "128, 128, 128" -> java.awt.Color.GRAY;
-            case "64, 64, 64" -> java.awt.Color.DARK_GRAY;
-            case "0, 255, 255" -> java.awt.Color.CYAN;
-            case "255, 0, 255" -> java.awt.Color.MAGENTA;
-            case "255, 255, 0" -> java.awt.Color.YELLOW;
-            case "255, 175, 175" -> java.awt.Color.PINK;
-            case "255, 200, 0" -> java.awt.Color.ORANGE;
-            default ->
-                //default color if unknown color
-                    java.awt.Color.BLACK;
-        };
+        return new java.awt.Color(r, g, b);
     }
+
 }

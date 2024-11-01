@@ -10,15 +10,17 @@ import java.awt.*;
 @Slf4j
 public class ConfirmationDialogs {
 
+    private final ColorProcessor colorProcessor;
     private Messages messages;
     private Coloring coloring;
 
     @Setter
     private FileManager fileManager;
 
-    public ConfirmationDialogs(Messages messages, Coloring coloring) {
+    public ConfirmationDialogs(Messages messages, Coloring coloring, ColorProcessor colorProcessor) {
         this.messages = messages;
         this.coloring = coloring;
+        this.colorProcessor = colorProcessor;
     }
 
     public void clearConfirmationDialog() {
@@ -160,6 +162,57 @@ public class ConfirmationDialogs {
             throw new NumberFormatException(colorName + " value must be between 0 and 255.");
         }
         return value;
+    }
+
+    /*
+     * Hardcoded kind of color selector. It sucks. Using swing's color chooser is better
+     */
+    public void showColorPanel() {
+        JButton yellowButton = createColorButton(Color.YELLOW);
+        JButton redButton = createColorButton(Color.RED);
+        JButton blueButton = createColorButton(Color.BLUE);
+
+        yellowButton.addActionListener(e -> log.info("Yellow selected"));
+        redButton.addActionListener(e -> log.info("Red selected"));
+        blueButton.addActionListener(e -> log.info("Blue selected"));
+
+        JPanel panel = new JPanel();
+        panel.add(yellowButton);
+        panel.add(redButton);
+        panel.add(blueButton);
+
+        JOptionPane.showMessageDialog(
+                null,
+                panel,
+                "Select a Color",
+                JOptionPane.QUESTION_MESSAGE
+        );
+    }
+
+    private JButton createColorButton(Color color) {
+        JButton button = new JButton();
+        button.setPreferredSize(new Dimension(20, 20));
+        button.setBackground(color);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        return button;
+    }
+
+    public void swingColorSelector() {
+        Color initialColor = colorProcessor.decodeColor(coloring.getChosenColor());
+        log.info("Current color: " + initialColor);
+
+        Color selectedColor = JColorChooser.showDialog(null, "Select a Color", initialColor);
+
+        if (selectedColor != null) {
+            int r = selectedColor.getRed();
+            int g = selectedColor.getGreen();
+            int b = selectedColor.getBlue();
+            coloring.customColor(r, g, b);
+            log.info("Color selected: " + selectedColor);
+        } else {
+            log.info("Cancelled. Keeping color: " + initialColor);
+        }
     }
 
 }
