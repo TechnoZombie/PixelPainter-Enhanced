@@ -8,7 +8,7 @@ public class Main {
 
 
 
-        int width = 600;
+        int width = 800;
         int height = 400;
 
         //for deployment, pixelSize will be hardcoded

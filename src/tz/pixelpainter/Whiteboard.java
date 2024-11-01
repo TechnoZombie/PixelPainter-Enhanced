@@ -51,7 +51,7 @@ public class Whiteboard {
         this.height = height;
         this.pixelSize = pixelSize;
         loadTools();
-        UserInterfaceManager userInterfaceManager = new UserInterfaceManager(fileManager, confirmationDialogs);
+        UserInterfaceManager userInterfaceManager = new UserInterfaceManager(fileManager, confirmationDialogs, coloring);
         userInterfaceManager.generateUserInterface();
         Generators generators = new Generators(width, height, pixelSize);
         generators.wallpaperGenerator();

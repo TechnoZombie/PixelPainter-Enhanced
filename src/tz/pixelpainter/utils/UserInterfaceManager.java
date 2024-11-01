@@ -1,19 +1,25 @@
 package tz.pixelpainter.utils;
 
 import org.technozombie.simplegraphz.graphics.Canvas;
+import tz.pixelpainter.Coloring;
 
 public class UserInterfaceManager {
 
     FileManager fileManager;
     ConfirmationDialogs confirmationDialogs;
+    Coloring coloring;
     Canvas canvas = Canvas.getInstance();
 
-    public UserInterfaceManager(FileManager fileManager, ConfirmationDialogs confirmationDialogs) {
+    public UserInterfaceManager(FileManager fileManager, ConfirmationDialogs confirmationDialogs, Coloring coloring) {
         this.fileManager = fileManager;
         this.confirmationDialogs = confirmationDialogs;
+        this.coloring = coloring;
     }
 
     public void generateUserInterface() {
+        canvas.setAppIcon("resources/FlatPixel.png");
+        canvas.setAppTitle("PixelPainter!");
+
         canvas.addMenu(MenuConstants.FILE);
         canvas.addItemToMenu(MenuConstants.FILE, MenuConstants.EXIT, e -> System.exit(0)); // Exit the program when "Exit" is clicked);
 
@@ -29,5 +35,6 @@ public class UserInterfaceManager {
 
         canvas.addMenu(MenuConstants.HELP);
         canvas.addItemToMenu(MenuConstants.HELP, MenuConstants.KEYBINDS, e -> confirmationDialogs.showKeyBinds());
+
     }
 }
