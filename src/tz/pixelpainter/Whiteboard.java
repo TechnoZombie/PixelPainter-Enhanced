@@ -19,6 +19,8 @@ public class Whiteboard {
     @Getter
     private int pixelSize;
     private ColorProcessor colorProcessor;
+
+    @Getter
     private Rectangle[][] individualSquares;
     private FileManager fileManager;
     private KeyboardController keyboardController;
@@ -31,11 +33,6 @@ public class Whiteboard {
     private Movement movement;
     private Coloring coloring;
     private ConfirmationDialogs confirmationDialogs;
-
-    public Rectangle[][] getIndividualSquares() {
-        return individualSquares;
-    }
-
 
     public void start(int width, int height, int pixelSize) {
         this.width = width;

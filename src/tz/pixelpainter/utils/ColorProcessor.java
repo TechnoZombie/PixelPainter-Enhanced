@@ -24,7 +24,6 @@ public class ColorProcessor {
             case "255, 200, 0" -> "ORANGE";
             default -> "BLACK";
         };
-
     }
 
     public Color colorTranslator(String color) {
@@ -45,7 +44,6 @@ public class ColorProcessor {
             case "ORANGE" -> Color.ORANGE;
             default -> Color.BLACK;
         };
-
     }
 
     public java.awt.Color decodeColor(Color squareColor) {

@@ -12,10 +12,10 @@ public class Coloring {
 
     @Getter
     @Setter
-    Color chosenColor = Color.BLACK;
-    Color gridColor = Color.BLACK;
-    int cursorSquareX;
-    int cursorSquareY;
+    private Color chosenColor = Color.BLACK;
+    private Color gridColor = Color.BLACK;
+    private int cursorSquareX;
+    private int cursorSquareY;
 
    /* private boolean dragging = false;
 

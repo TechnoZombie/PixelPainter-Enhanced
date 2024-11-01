@@ -39,8 +39,6 @@ public class KeyboardController implements KeyboardHandler {
         keyboard.addEventListener(event);
     }
 
-
-
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
@@ -86,8 +84,10 @@ public class KeyboardController implements KeyboardHandler {
 
             case KeyboardEvent.KEY_0 -> coloring.colorWhite();
 
+            // TODO: REMOVE
             case KeyboardEvent.KEY_Z -> fileManager.saveFile();
 
+            // TODO: REMOVE
             case KeyboardEvent.KEY_X -> confirmationDialogs.loadConfirmationDialog();
 
         }

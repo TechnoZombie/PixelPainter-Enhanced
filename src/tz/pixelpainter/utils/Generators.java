@@ -31,10 +31,10 @@ public class Generators {
     }
 
     private void tableOutlineGenerator() {
-int cols = 1;
-int lines = 12;
-int cellWidth = 170;
-int cellHeight = pixelSize;
+        int cols = 1;
+        int lines = 12;
+        int cellWidth = 170;
+        int cellHeight = pixelSize;
         // Initialize the two-dimensional array with the correct size
         Rectangle[][] tableCells = new Rectangle[lines][cols];
 
@@ -51,7 +51,6 @@ int cellHeight = pixelSize;
                 tableCells[i][j] = new Rectangle(((width + 20) + (j * cellWidth)), 10 + (i * cellHeight), cellWidth, cellHeight);
                 tableCells[i][j].setColor(Color.WHITE);
                 tableCells[i][j].draw();
-
             }
         }
     }

@@ -31,7 +31,6 @@ public class Messages {
 
     public String imageLoaded() {
         return "Image Loaded!";
-
     }
 
     public void featureUnavailable() {

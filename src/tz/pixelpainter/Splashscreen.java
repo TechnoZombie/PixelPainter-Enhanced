@@ -31,7 +31,7 @@ public class Splashscreen {
         Text pressToStart = new Text(270, 250, pressToStartText);
         pressToStart.setColor(Color.BLUE);
         pressToStart.draw();
-        ;
+
         pressToStart.grow(80, 13);
     }
 }
