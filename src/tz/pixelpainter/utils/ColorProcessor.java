@@ -1,17 +1,24 @@
 package tz.pixelpainter.utils;
 
 import org.technozombie.simplegraphz.graphics.Color;
-import tz.pixelpainter.Coloring;
 
 public class ColorProcessor {
-    private final Coloring coloring;
 
-    public ColorProcessor(Coloring coloring) {
-        this.coloring = coloring;
-    }
-
+    /**
+     * @param red   the red component of the color (0-255)
+     * @param green the green component of the color (0-255)
+     * @param blue  the blue component of the color (0-255)
+     * @return a string representing the color name (e.g., "BLACK", "RED") if matched, or "BLACK" if the color is not recognized.
+     * @deprecated This method was previously used in {@code saveFileLogic()} to convert RGB color values
+     * into a color name string for saving files in .txt format.
+     * <p>
+     * This functionality has been replaced by {@code decodeColor()}, which performs color conversion
+     * with enhanced flexibility.
+     * <p>
+     * The method returns "BLACK" for any color values that do not match predefined colors.
+     */
+    @Deprecated
     public String encodeColor(int red, int green, int blue) {
-        // TODO: Enhancement - remove switch case to allow saving with custom colors;
         String colorString = red + ", " + green + ", " + blue;
 
         return switch (colorString) {
@@ -32,6 +39,18 @@ public class ColorProcessor {
         };
     }
 
+    /**
+     * @param color the name of the color as a string (e.g., "BLACK", "RED")
+     * @return the corresponding {@link Color} constant if matched, or {@link Color#BLACK} if the color name is unknown.
+     * @deprecated This method was used in {@code processRectangleLine()} as part of {@code loadFile()}
+     * to convert color names from a text file to {@link Color} objects.
+     * <p>
+     * This functionality has been replaced by {@code customColor()}, which extracts colors using
+     * {@code coordinateExtractor()} for a more flexible color handling approach.
+     * <p>
+     * The method now returns a default color, {@link Color#BLACK}, for unrecognized inputs.
+     */
+    @Deprecated
     public Color colorTranslator(String color) {
 
         return switch (color) {
@@ -52,8 +71,12 @@ public class ColorProcessor {
         };
     }
 
-    /*
-    Convert simplegraphz colors to java.awt.Color colors
+    /**
+     * Converts a {@code Color} object from the simplegraphz color model to a {@link java.awt.Color}
+     * object for use in Java AWT graphics.
+     *
+     * @param squareColor the {@code Color} object from simplegraphz that needs to be converted
+     * @return a {@link java.awt.Color} object with the same RGB values as {@code squareColor}
      */
     public java.awt.Color decodeColor(Color squareColor) {
         int r = squareColor.getRed();
@@ -62,5 +85,4 @@ public class ColorProcessor {
 
         return new java.awt.Color(r, g, b);
     }
-
 }

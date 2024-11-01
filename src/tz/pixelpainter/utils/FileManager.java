@@ -3,6 +3,7 @@ package tz.pixelpainter.utils;
 import lombok.extern.slf4j.Slf4j;
 import org.technozombie.simplegraphz.graphics.Color;
 import org.technozombie.simplegraphz.graphics.Rectangle;
+import tz.pixelpainter.Coloring;
 import tz.pixelpainter.Whiteboard;
 
 import javax.imageio.ImageIO;
@@ -18,12 +19,14 @@ public class FileManager {
     private final ColorProcessor colorProcessor;
     private final ConfirmationDialogs confirmationDialogs;
     private final String filePath = "resources/image.txt";
+    private final Coloring coloring;
 
-    public FileManager(Whiteboard whiteboard, Messages messages, ColorProcessor colorProcessor, ConfirmationDialogs confirmationDialogs) {
+    public FileManager(Whiteboard whiteboard, Messages messages, ColorProcessor colorProcessor, Coloring coloring, ConfirmationDialogs confirmationDialogs) {
         this.whiteboard = whiteboard;
         this.messages = messages;
         this.colorProcessor = colorProcessor;
         this.confirmationDialogs = confirmationDialogs;
+        this.coloring = coloring;
     }
 
 
@@ -41,9 +44,8 @@ public class FileManager {
             for (Rectangle[] row : whiteboard.getIndividualSquares()) {
                 for (Rectangle square : row) {
                     if (square.isFilled()) {
-                        // TODO: Bugfix - when saving with custom colors, it will save as BLACK.
-                        String color = colorProcessor.encodeColor(square.getColor().getRed(), square.getColor().getGreen(), square.getColor().getBlue());
-                        writer.write(String.format("%s Color:%s;\n", square, color));
+                        java.awt.Color c = colorProcessor.decodeColor(square.getColor());
+                        writer.write(String.format("%s Color:%s;\n", square, c));
                     }
                 }
             }
@@ -60,7 +62,6 @@ public class FileManager {
                     processRectangleLine(line);
                 }
             }
-
             messages.imageLoaded();
 
         } catch (IOException e) {
@@ -70,20 +71,25 @@ public class FileManager {
     }
 
     private void processRectangleLine(String line) {
-        int x = coordinateExtractor("x=", ",", line);
-        int y = coordinateExtractor("y=", ",", line);
-        int w = coordinateExtractor("width=", ",", line);
-        String color = line.split("Color:")[1].split(";")[0];
+        // Coordinates extractors
+        int x = coordinateExtractor(line, "x=", ",");
+        int y = coordinateExtractor(line, "y=", ",");
+        int w = coordinateExtractor(line, "width=", ",");
+
+        // Color extractors
+        int r = coordinateExtractor(line, "r=", ",");
+        int g = coordinateExtractor(line, "g=", ",");
+        int b = coordinateExtractor(line, "b=", "]");
 
         int iX = coordinateConverter(x, w);
         int iY = coordinateConverter(y, w);
 
-        whiteboard.getIndividualSquares()[iY][iX].setColor(colorProcessor.colorTranslator(color));
+        whiteboard.getIndividualSquares()[iY][iX].setColor(coloring.customColor(r, g, b));
         whiteboard.getIndividualSquares()[iY][iX].fill();
     }
 
     // Extracts coordinates from a string using regex
-    public int coordinateExtractor(String start, String stop, String line) {
+    public int coordinateExtractor(String line, String start, String stop) {
         return Integer.parseInt(line.split(start)[1].split(stop)[0]);
     }
 
