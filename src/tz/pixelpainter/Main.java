@@ -14,8 +14,8 @@ public class Main {
 
         //Splashscreen splashscreen = new Splashscreen();
         //splashscreen.load();
-        Whiteboard whiteboard = new Whiteboard();
-        whiteboard.start(width, height, pixelSize);
+        Whiteboard whiteboard = new Whiteboard(width, height, pixelSize);
+        whiteboard.start();
 
     }
 }

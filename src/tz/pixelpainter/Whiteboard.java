@@ -11,19 +11,19 @@ public class Whiteboard {
     public Cursor cursor;
 
     @Getter
-    private int width;
+    private final int width;
 
     @Getter
-    private int height;
+    private final int height;
 
     @Getter
-    private int pixelSize;
-    private ColorProcessor colorProcessor;
+    private final int pixelSize;
+    private final ColorProcessor colorProcessor;
 
     @Getter
     private Rectangle[][] individualSquares;
-    private FileManager fileManager;
-    private KeyboardController keyboardController;
+    private final FileManager fileManager;
+    private final KeyboardController keyboardController;
 
     @Getter
     private int numberOfColumns;
@@ -34,11 +34,22 @@ public class Whiteboard {
     private Coloring coloring;
     private ConfirmationDialogs confirmationDialogs;
 
-    public void start(int width, int height, int pixelSize) {
+    public Whiteboard(int width, int height, int pixelSize) {
         this.width = width;
         this.height = height;
         this.pixelSize = pixelSize;
-        loadTools();
+        this.colorProcessor = new ColorProcessor();
+        this.messages = new Messages();
+        this.cursor = new Cursor(pixelSize);
+        this.movement = new Movement(cursor, this);
+        this.coloring = new Coloring(movement, cursor, this);
+        this.confirmationDialogs = new ConfirmationDialogs(messages, coloring, colorProcessor);
+        this.fileManager = new FileManager(this, messages, colorProcessor, coloring, confirmationDialogs);
+        this.confirmationDialogs.setFileManager(fileManager);
+        this.keyboardController = new KeyboardController(movement, coloring, fileManager, confirmationDialogs);
+    }
+
+    public void start() {
         UserInterfaceManager userInterfaceManager = new UserInterfaceManager(fileManager, confirmationDialogs, coloring);
         userInterfaceManager.generateUserInterface();
         Generators generators = new Generators(width, height, pixelSize);
@@ -57,18 +68,6 @@ public class Whiteboard {
         //picture.grow(0, 200);
 
         //picture.draw();
-    }
-
-    public void loadTools() {
-        cursor = new Cursor(pixelSize);
-        movement = new Movement(cursor, this);
-        coloring = new Coloring(movement, cursor, this);
-        colorProcessor = new ColorProcessor();
-        messages = new Messages();
-        confirmationDialogs = new ConfirmationDialogs(messages, coloring, colorProcessor);
-        fileManager = new FileManager(this, messages, colorProcessor, coloring, confirmationDialogs);
-        confirmationDialogs.setFileManager(fileManager);
-        keyboardController = new KeyboardController(movement, coloring, fileManager, confirmationDialogs);
     }
 
     // Creates grid of squares
