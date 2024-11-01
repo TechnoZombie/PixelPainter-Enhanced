@@ -5,7 +5,7 @@ import org.technozombie.simplegraphz.graphics.Color;
 import org.technozombie.simplegraphz.graphics.Rectangle;
 
 public class Cursor {
-    private Rectangle cursor;
+    private final Rectangle cursor;
 
     public Cursor(int cursorSize) {
         cursor = new Rectangle(10, 10, cursorSize, cursorSize);

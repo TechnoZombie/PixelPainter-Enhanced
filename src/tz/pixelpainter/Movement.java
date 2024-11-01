@@ -1,19 +1,16 @@
 package tz.pixelpainter;
 
+import lombok.Getter;
+
 public class Movement {
 
     private final Cursor cursor;
     private final Whiteboard whiteboard;
 
-    public int getCursorIndexX() {
-        return cursorIndexX;
-    }
-
-    public int getCursorIndexY() {
-        return cursorIndexY;
-    }
-
+    @Getter
     private int cursorIndexX = 0;
+
+    @Getter
     private int cursorIndexY = 0;
 
     public Movement(Cursor cursor, Whiteboard whiteboard) {

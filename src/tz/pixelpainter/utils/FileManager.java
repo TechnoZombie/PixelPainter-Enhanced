@@ -15,9 +15,9 @@ public class FileManager {
 
     private final Whiteboard whiteboard;
     private final Messages messages;
-    private ColorProcessor colorProcessor;
-    private ConfirmationDialogs confirmationDialogs;
-    String filePath = "resources/image.txt";
+    private final ColorProcessor colorProcessor;
+    private final ConfirmationDialogs confirmationDialogs;
+    private final String filePath = "resources/image.txt";
 
     public FileManager(Whiteboard whiteboard, Messages messages, ColorProcessor colorProcessor, ConfirmationDialogs confirmationDialogs) {
         this.whiteboard = whiteboard;
@@ -160,7 +160,7 @@ public class FileManager {
     // Print information about individual painted squares by pressing key I
     // To comment or remove on final version
     public void getInfo() {
-        int numVerticalLines = whiteboard.getNumVerticalLines();
+        int numVerticalLines = whiteboard.getNumberOfLines();
         int numHorizontalSquares = whiteboard.getNumberOfColumns();
         Rectangle[][] individualSquares = whiteboard.getIndividualSquares();
 
@@ -171,14 +171,10 @@ public class FileManager {
                     Color color = square.getColor();
                     String colorString = "R=" + color.getRed() + ", G=" + color.getGreen() + ", B=" + color.getBlue();
                     log.info("X: " + square.getX() + ", Y: " + square.getY() + ", Color: " + colorString);
-                    System.out.println();
                 }
             }
-
         }
-
     }
-
 }
 
 

@@ -6,7 +6,7 @@ import org.technozombie.simplegraphz.graphics.Text;
 import tz.pixelpainter.utils.Generators;
 
 public class Splashscreen {
-    Rectangle splashscreenBackground;
+    private Rectangle splashscreenBackground;
 
     public Splashscreen() {
     }
@@ -26,7 +26,7 @@ public class Splashscreen {
         welcomeText.draw();
         welcomeText.grow(200, 33);
 
-        //BEST TEXT SIZE IS IN 6:1 PROPORTION!
+        // BEST TEXT SIZE IS IN 6:1 PROPORTION!
 
         Text pressToStart = new Text(270, 250, pressToStartText);
         pressToStart.setColor(Color.BLUE);
@@ -34,5 +34,4 @@ public class Splashscreen {
         ;
         pressToStart.grow(80, 13);
     }
-
 }

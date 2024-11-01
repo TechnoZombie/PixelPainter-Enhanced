@@ -5,10 +5,10 @@ import tz.pixelpainter.Coloring;
 
 public class UserInterfaceManager {
 
-    FileManager fileManager;
-    ConfirmationDialogs confirmationDialogs;
-    Coloring coloring;
-    Canvas canvas = Canvas.getInstance();
+    private FileManager fileManager;
+    private ConfirmationDialogs confirmationDialogs;
+    private Coloring coloring;
+    private Canvas canvas = Canvas.getInstance();
 
     public UserInterfaceManager(FileManager fileManager, ConfirmationDialogs confirmationDialogs, Coloring coloring) {
         this.fileManager = fileManager;

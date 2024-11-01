@@ -1,5 +1,7 @@
 package tz.pixelpainter;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.technozombie.simplegraphz.graphics.Color;
 
 public class Coloring {
@@ -7,6 +9,9 @@ public class Coloring {
     private final Movement movement;
     private final Cursor cursor;
     private final Whiteboard whiteboard;
+
+    @Getter
+    @Setter
     Color chosenColor = Color.BLACK;
     Color gridColor = Color.BLACK;
     int cursorSquareX;
@@ -49,7 +54,7 @@ public class Coloring {
 
     public void clearCanvas() {
         int canvasWidth = whiteboard.getNumberOfColumns();
-        int canvasHeight = whiteboard.getNumVerticalLines();
+        int canvasHeight = whiteboard.getNumberOfLines();
 
         for (int i = 0; i < canvasHeight; i++) {
             for (int j = 0; j < canvasWidth; j++) {
@@ -61,9 +66,6 @@ public class Coloring {
         cursor.cursorReFill();
     }
 
-    public void setChosenColor(Color chosenColor) {
-        this.chosenColor = chosenColor;
-    }
 
     public void colorBlack() {
         setChosenColor(Color.BLACK);

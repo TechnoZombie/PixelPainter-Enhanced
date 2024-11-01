@@ -1,5 +1,6 @@
 package tz.pixelpainter;
 
+import lombok.Getter;
 import org.technozombie.simplegraphz.graphics.Rectangle;
 import org.technozombie.simplegraphz.graphics.Color;
 import tz.pixelpainter.hid.KeyboardController;
@@ -8,43 +9,33 @@ import tz.pixelpainter.utils.*;
 public class Whiteboard {
 
     public Cursor cursor;
+
+    @Getter
     private int width;
+
+    @Getter
     private int height;
+
+    @Getter
     private int pixelSize;
     private ColorProcessor colorProcessor;
     private Rectangle[][] individualSquares;
     private FileManager fileManager;
     private KeyboardController keyboardController;
+
+    @Getter
     private int numberOfColumns;
+    @Getter
     private int numberOfLines;
     private Messages messages;
     private Movement movement;
     private Coloring coloring;
     private ConfirmationDialogs confirmationDialogs;
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getPixelSize() {
-        return pixelSize;
-    }
-
     public Rectangle[][] getIndividualSquares() {
         return individualSquares;
     }
 
-    public int getNumberOfColumns() {
-        return numberOfColumns;
-    }
-
-    public int getNumVerticalLines() {
-        return numberOfLines;
-    }
 
     public void start(int width, int height, int pixelSize) {
         this.width = width;

@@ -6,8 +6,6 @@ import tz.pixelpainter.utils.FileManager;
 public class Main {
     public static void main(String[] args) {
 
-
-
         int width = 800;
         int height = 400;
 
