@@ -30,13 +30,14 @@ public class FileManager {
     }
 
 
-    public void saveFile() {
+    public boolean saveFile() {
         File file = new File(filePath);
 
         if (file.exists() && !confirmationDialogs.overwriteConfirmationDialog()) {
-            return; // If user chooses not to overwrite, exit
+            return false; // If user chooses not to overwrite, exit
         }
         saveFileLogic();
+        return true; // Indicate save was successful
     }
 
     void saveFileLogic() {
@@ -100,7 +101,10 @@ public class FileManager {
 
 
     public void exportToPng(String filePath) {
-        saveFile(); // Needs to call saveFile() first to prevent empty individualSquaresToSave from throwing nullPointerException;
+        if (!saveFile()) {
+            return;
+        }
+        ; // Needs to call saveFile() first to prevent empty individualSquaresToSave from throwing nullPointerException;
 
         /* Find the bounding box of the painted squares
            This is done so that the image is exported without the full canvas size.

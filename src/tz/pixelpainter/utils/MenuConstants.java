@@ -5,6 +5,7 @@ public class MenuConstants {
     public static final String CLEAR_CANVAS = "Clear Canvas";
     public static final String COPY = "Copy";
     public static final String CUT = "Cut";
+    public static final String COLOR_SELECTOR = "Show Color Selector";
     public static final String CREATE_CUSTOM_COLOR = "Create Custom Color";
     public static final String EDIT = "Edit";
     public static final String EXIT = "Exit";

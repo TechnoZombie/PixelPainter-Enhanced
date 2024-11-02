@@ -7,13 +7,12 @@ public class UserInterfaceManager {
 
     private FileManager fileManager;
     private ConfirmationDialogs confirmationDialogs;
-    private Coloring coloring;
-    private Canvas canvas = Canvas.getInstance();
 
-    public UserInterfaceManager(FileManager fileManager, ConfirmationDialogs confirmationDialogs, Coloring coloring) {
+    private final Canvas canvas = Canvas.getInstance();
+
+    public UserInterfaceManager(FileManager fileManager, ConfirmationDialogs confirmationDialogs) {
         this.fileManager = fileManager;
         this.confirmationDialogs = confirmationDialogs;
-        this.coloring = coloring;
     }
 
     public void generateUserInterface() {
@@ -26,13 +25,13 @@ public class UserInterfaceManager {
         canvas.addMenu(MenuConstants.EDIT);
         canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CLEAR_CANVAS, e -> confirmationDialogs.clearConfirmationDialog());
         canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CREATE_CUSTOM_COLOR, e -> confirmationDialogs.promptForColor());
-        canvas.addItemToMenu(MenuConstants.EDIT, "Show color selector", e -> confirmationDialogs.swingColorSelector());
+        canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.COLOR_SELECTOR, e -> confirmationDialogs.swingColorSelector());
 
         canvas.addMenu(MenuConstants.MANAGER);
         canvas.addMenuSeparator(MenuConstants.MANAGER);
         canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.LOAD_FILE, e -> confirmationDialogs.loadConfirmationDialog());
         canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.SAVE_FIE, e -> fileManager.saveFile());
-        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.EXPORT_PNG, e -> fileManager.exportToPng("resources/savedImageFromMenu.png"));
+        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.EXPORT_PNG, e -> fileManager.exportToPng("resources/savedImage.png"));
         canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.TAKE_SCREENSHOT, e -> canvas.saveToDisk("resources/screenshot.png"));
 
         canvas.addMenu(MenuConstants.HELP);

@@ -47,15 +47,20 @@ public class ConfirmationDialogs {
                     "Are you sure?",
                     "Overwrite Confirmation", JOptionPane.YES_NO_OPTION
             );
+
             if (response == JOptionPane.YES_OPTION) {
-                fileManager.saveFileLogic();// User chose "Yes"
+                fileManager.saveFileLogic(); // User chose "Yes"
                 JOptionPane.showMessageDialog(
                         null,
                         messages.imageSaved(),
                         "Image Saved",
                         JOptionPane.INFORMATION_MESSAGE
                 );
+                return true; // Successfully saved
+            } else if (response == JOptionPane.NO_OPTION) {
+                return false; // User chose "No"
             }
+
         } catch (Exception e) {
             log.error("Error: ", e);
             throw new RuntimeException(e);
@@ -88,12 +93,6 @@ public class ConfirmationDialogs {
             );
             if (response == JOptionPane.YES_OPTION) {
                 fileManager.exportToPng("resources/savedImage.png");
-                JOptionPane.showMessageDialog(
-                        null,
-                        messages.pngExported(),
-                        "Export confirmation",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
             }
         } catch (Exception e) {
             log.error("Error: ", e);
@@ -110,6 +109,10 @@ public class ConfirmationDialogs {
         );
     }
 
+    /*
+     * Having swingColorSelector() makes this redundant. To be removed
+     * Might be useful for button-based selections in the future.
+     */
     public void promptForColor() {
         while (true) {
             JPanel panel = new JPanel(new GridLayout(3, 2));
@@ -214,6 +217,5 @@ public class ConfirmationDialogs {
             log.info("Cancelled. Keeping color: " + initialColor);
         }
     }
-
 }
 

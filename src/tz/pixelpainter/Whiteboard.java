@@ -50,14 +50,14 @@ public class Whiteboard {
     }
 
     public void start() {
-        UserInterfaceManager userInterfaceManager = new UserInterfaceManager(fileManager, confirmationDialogs, coloring);
+        UserInterfaceManager userInterfaceManager = new UserInterfaceManager(fileManager, confirmationDialogs);
         userInterfaceManager.generateUserInterface();
         Generators generators = new Generators(width, height, pixelSize);
         generators.wallpaperGenerator();
         //generators.tableGenerator();
         gridGenerator();
         cursor.cursorFill(); //Filling the cursor needs to come last so that it over-imposes other elements of the grid
-        // messages.instructionsTable();
+        //messages.instructionsTable();
 
         //Loads a picture from file
         //Picture picture = new Picture(5, 5, "resources/fff.png");
