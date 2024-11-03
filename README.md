@@ -5,7 +5,7 @@ A Java-based pixel art creation tool that combines simplicity with powerful feat
 This project  is a continuation of the original PixelPainter project, with additional features and improvements. The main goal was to implement a GUI  for the application, making it more user-friendly and accessible. It then grew large enough to be its own  project and repository.
 The original can be found here:  https://github.com/TechnoZombie/PixelPainter .
 
-It also makes use of a custom graphics library, based on simple-graphics ( [LINK](https://github.com/academia-de-codigo/simple-graphics) ) where custom methods to allow for JFram manipulation were added, as well as Lombok and Slf4j.
+It also makes use of a [custom graphics library](https://github.com/TechnoZombie/Simplegraphz), based on [simple-graphics](https://github.com/academia-de-codigo/simple-graphics) where custom methods to allow for JFram manipulation were added, as well as Lombok and Slf4j.
 
 ## Project Overview
 
