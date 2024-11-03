@@ -1,8 +1,5 @@
 package tz.pixelpainter;
 
-import org.technozombie.simplegraphz.graphics.Canvas;
-import tz.pixelpainter.utils.FileManager;
-
 public class Main {
     public static void main(String[] args) {
 
