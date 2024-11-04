@@ -21,6 +21,6 @@ public class MenuConstants {
     public static final String PAUSE = "Pause";
     public static final String PASTE = "Paste";
     public static final String SAVE = "Save";
-    public static final String SAVE_FIE = "Save File";
+    public static final String SAVE_FILE = "Save File";
     public static final String TAKE_SCREENSHOT = "Take a screenshot";
 }

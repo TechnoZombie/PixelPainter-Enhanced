@@ -1,4 +1,4 @@
-package tz.pixelpainter;
+package tz.pixelpainter.movement;
 
 
 import org.technozombie.simplegraphz.graphics.Color;
@@ -34,8 +34,8 @@ public class Cursor {
         cursor.translate(x, y);
     }
 
-    public void setPosition(int x, int y) {
-        // Set the position of the cursor to the specified coordinates
-        cursor.translate(x - cursor.getX(), y - cursor.getY());
-    }
+//    public void setPosition(int x, int y) {
+//        // Set the position of the cursor to the specified coordinates
+//        cursor.translate(x - cursor.getX(), y - cursor.getY());
+//    }
 }
