@@ -1,4 +1,4 @@
-package tz.pixelpainter.utils;
+package tz.pixelpainter.color;
 
 import org.technozombie.simplegraphz.graphics.Color;
 

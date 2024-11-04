@@ -4,71 +4,88 @@ import org.technozombie.simplegraphz.graphics.Rectangle;
 import org.technozombie.simplegraphz.graphics.Color;
 import org.technozombie.simplegraphz.graphics.Text;
 
+/**
+ * The Generators class is responsible for creating graphical elements such as wallpapers and instruction tables
+ * for the PixelPainter application.
+ */
 public class Generators {
     private final int width;
     private final int height;
     private final int pixelSize;
 
+    private static final int MARGIN_X = 20; // Horizontal margin
+    private static final int MARGIN_Y = 10; // Vertical margin
+    private static final int TABLE_CELL_WIDTH = 170; // Width of each table cell
+    private static int TABLE_CELL_HEIGHT = 0; // Height of each table cell is determined by pixelSize
+
+    /**
+     * Constructs a Generators instance with specified dimensions and pixel size.
+     *
+     * @param width      the width of the canvas
+     * @param height     the height of the canvas
+     * @param pixelSize  the size of individual pixels in the table
+     */
     public Generators(int width, int height, int pixelSize) {
         this.width = width;
         this.height = height;
         this.pixelSize = pixelSize;
+        TABLE_CELL_HEIGHT = pixelSize; // Initialize cell height from pixel size
     }
 
+    /**
+     * Generates a wallpaper for the application.
+     * This method creates a light gray rectangle to serve as the background.
+     */
     public void wallpaperGenerator() {
-        //v = margin left to right
-        //v1 = margin to top bottom
-        //Rectangle wallpaper = new Rectangle(0, 0, width + 200, height + 20); // sizing to accommodate instruction table
-        Rectangle wallpaper = new Rectangle(0, 0, width + 20, height + 20);
+        Rectangle wallpaper = new Rectangle(0, 0, width + MARGIN_X, height + MARGIN_Y);
         wallpaper.setColor(Color.LIGHT_GRAY);
         wallpaper.draw();
         wallpaper.fill();
     }
 
+    /**
+     * Generates a table with an outline and instructional text.
+     */
     public void tableGenerator() {
-        tableOutlineGenerator();
-        tableTextGenerator();
+        drawTableOutline();
+        drawTableText();
     }
 
-    private void tableOutlineGenerator() {
-        int cols = 1;
-        int lines = 12;
-        int cellWidth = 170;
-        int cellHeight = pixelSize;
-        // Initialize the two-dimensional array with the correct size
-        Rectangle[][] tableCells = new Rectangle[lines][cols];
+    /**
+     * Draws the outline of the table, creating individual cells based on defined parameters.
+     */
+    private void drawTableOutline() {
+        int cols = 1; // Fixed number of columns
+        int rows = 12; // Fixed number of rows
 
-        /*Rectangle:
-        v: margin left right
-        v1: margin top bottom
-        v2: cell width
-        v3: cell height
-        */
+        Rectangle[][] tableCells = new Rectangle[rows][cols];
 
-        //  Generate the table
-        for (int i = 0; i < lines; i++) {
-            for (int j = 0; j < cols; j++) {
-                tableCells[i][j] = new Rectangle(((width + 20) + (j * cellWidth)), 10 + (i * cellHeight), cellWidth, cellHeight);
-                tableCells[i][j].setColor(Color.WHITE);
-                tableCells[i][j].draw();
+        // Generate the table cells
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                tableCells[row][col] = new Rectangle(
+                        (width + MARGIN_X) + (col * TABLE_CELL_WIDTH),
+                        MARGIN_Y + (row * TABLE_CELL_HEIGHT),
+                        TABLE_CELL_WIDTH,
+                        TABLE_CELL_HEIGHT
+                );
+                tableCells[row][col].setColor(Color.WHITE);
+                tableCells[row][col].draw();
             }
         }
     }
 
-    private void tableTextGenerator() {
-        String splashscreen = "Welcome to PixelPainter!";
+    /**
+     * Draws the instructional text on the table.
+     */
+    private void drawTableText() {
+        String welcomeMessage = "Welcome to PixelPainter!";
+        Text welcomeText = new Text(300, (double) height / 2, welcomeMessage);
+        welcomeText.setColor(Color.ORANGE);
+        welcomeText.draw();
+        welcomeText.grow(200, 50); // Grow the text to make it more visible
 
-        // v = lef and right
-        // v1 = up and down
-        Text text = new Text(300, (double) height / 2, splashscreen);
-
-        text.setColor(Color.ORANGE);
-        text.draw();
-
-        // v = width
-        // v1 = height
-        text.grow(200, 50);
-
+        // Instruction items to be displayed
         String[] instructionItems = {
                 "PIXELPAINTER!",
                 "  ",
@@ -84,21 +101,14 @@ public class Generators {
                 "C: Export to PNG"
         };
 
-        int heightAlignment = 11;
+        int heightAlignment = 11; // Starting vertical alignment for text
 
+        // Draw each instruction item
         for (String instructionItem : instructionItems) {
             Text menuItem = new Text(width + 25, heightAlignment, instructionItem);
             menuItem.setColor(Color.WHITE);
             menuItem.draw();
-            heightAlignment = heightAlignment + 20;
-            //System.out.println(heightAlignment);
+            heightAlignment += 20; // Increment the alignment for the next item
         }
-
-
-        // v = margin left to right
-        // v1 = margin to to bottom
-        // Text menu = new Text(width + 10, 10, "INSTRUCTIONS:");
-        // menu.setColor(Color.BLUE);
-        // menu.draw();
     }
 }
