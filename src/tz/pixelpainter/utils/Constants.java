@@ -1,7 +1,18 @@
 package tz.pixelpainter.utils;
 
-public class MenuConstants {
+public class Constants {
 
+    public static final String APP_TITLE = "PixelPainter!";
+
+    /*
+     * Paths
+     */
+    public static final String APP_ICON = "resources/FlatPixel.png";
+    public static final String FILE_PATH_NAME = "savedFiles/image.txt";
+
+    /*
+     * Menu Options
+     */
     public static final String CLEAR_CANVAS = "Clear Canvas";
     public static final String COPY = "Copy";
     public static final String CUT = "Cut";

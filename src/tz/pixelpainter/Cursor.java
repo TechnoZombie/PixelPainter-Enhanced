@@ -1,6 +1,5 @@
 package tz.pixelpainter;
 
-
 import org.technozombie.simplegraphz.graphics.Color;
 import org.technozombie.simplegraphz.graphics.Rectangle;
 

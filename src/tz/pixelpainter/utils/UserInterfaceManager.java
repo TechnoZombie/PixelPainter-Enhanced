@@ -1,12 +1,11 @@
 package tz.pixelpainter.utils;
 
 import org.technozombie.simplegraphz.graphics.Canvas;
-import tz.pixelpainter.Coloring;
 
 public class UserInterfaceManager {
 
-    private FileManager fileManager;
-    private ConfirmationDialogs confirmationDialogs;
+    private final FileManager fileManager;
+    private final ConfirmationDialogs confirmationDialogs;
 
     private final Canvas canvas = Canvas.getInstance();
 
@@ -16,26 +15,26 @@ public class UserInterfaceManager {
     }
 
     public void generateUserInterface() {
-        canvas.setAppIcon("resources/FlatPixel.png");
-        canvas.setAppTitle("PixelPainter!");
+        canvas.setAppIcon(Constants.APP_ICON);
+        canvas.setAppTitle(Constants.APP_TITLE);
 
-        canvas.addMenu(MenuConstants.FILE);
-        canvas.addItemToMenu(MenuConstants.FILE, MenuConstants.EXIT, e -> System.exit(0)); // Exit the program when "Exit" is clicked);
+        canvas.addMenu(Constants.FILE);
+        canvas.addItemToMenu(Constants.FILE, Constants.EXIT, e -> System.exit(0)); // Exit the program when "Exit" is clicked);
 
-        canvas.addMenu(MenuConstants.EDIT);
-        canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CLEAR_CANVAS, e -> confirmationDialogs.clearConfirmationDialog());
-        canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.CREATE_CUSTOM_COLOR, e -> confirmationDialogs.promptForColor());
-        canvas.addItemToMenu(MenuConstants.EDIT, MenuConstants.COLOR_SELECTOR, e -> confirmationDialogs.swingColorSelector());
+        canvas.addMenu(Constants.EDIT);
+        canvas.addItemToMenu(Constants.EDIT, Constants.CLEAR_CANVAS, e -> confirmationDialogs.clearConfirmationDialog());
+        canvas.addItemToMenu(Constants.EDIT, Constants.CREATE_CUSTOM_COLOR, e -> confirmationDialogs.promptForColor());
+        canvas.addItemToMenu(Constants.EDIT, Constants.COLOR_SELECTOR, e -> confirmationDialogs.swingColorSelector());
 
-        canvas.addMenu(MenuConstants.MANAGER);
-        canvas.addMenuSeparator(MenuConstants.MANAGER);
-        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.LOAD_FILE, e -> confirmationDialogs.loadConfirmationDialog());
-        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.SAVE_FIE, e -> fileManager.saveFile());
-        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.EXPORT_PNG, e -> fileManager.exportToPng("resources/savedImage.png"));
-        canvas.addItemToMenu(MenuConstants.MANAGER, MenuConstants.TAKE_SCREENSHOT, e -> canvas.saveToDisk("resources/screenshot.png"));
+        canvas.addMenu(Constants.MANAGER);
+        canvas.addMenuSeparator(Constants.MANAGER);
+        canvas.addItemToMenu(Constants.MANAGER, Constants.LOAD_FILE, e -> confirmationDialogs.loadConfirmationDialog());
+        canvas.addItemToMenu(Constants.MANAGER, Constants.SAVE_FIE, e -> fileManager.saveFile());
+        canvas.addItemToMenu(Constants.MANAGER, Constants.EXPORT_PNG, e -> fileManager.exportToPng("resources/savedImage.png"));
+        canvas.addItemToMenu(Constants.MANAGER, Constants.TAKE_SCREENSHOT, e -> canvas.saveToDisk("resources/screenshot.png"));
 
-        canvas.addMenu(MenuConstants.HELP);
-        canvas.addItemToMenu(MenuConstants.HELP, MenuConstants.KEYBINDS, e -> confirmationDialogs.showKeyBinds());
-        canvas.addItemToMenu(MenuConstants.HELP, "[DEV] Show image info", e -> fileManager.getInfo());
+        canvas.addMenu(Constants.HELP);
+        canvas.addItemToMenu(Constants.HELP, Constants.KEYBINDS, e -> confirmationDialogs.showKeyBinds());
+        canvas.addItemToMenu(Constants.HELP, "[DEV] Show image info", e -> fileManager.getInfo());
     }
 }

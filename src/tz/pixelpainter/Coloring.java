@@ -13,7 +13,7 @@ public class Coloring {
     @Getter
     @Setter
     private Color chosenColor = Color.BLACK;
-    private Color gridColor = Color.BLACK;
+    private final Color gridColor = Color.BLACK;
     private int cursorSquareX;
     private int cursorSquareY;
 

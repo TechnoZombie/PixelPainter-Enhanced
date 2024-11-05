@@ -18,7 +18,6 @@ public class FileManager {
     private final Messages messages;
     private final ColorProcessor colorProcessor;
     private final ConfirmationDialogs confirmationDialogs;
-    private final String filePath = "resources/image.txt";
     private final Coloring coloring;
 
     public FileManager(Whiteboard whiteboard, Messages messages, ColorProcessor colorProcessor, Coloring coloring, ConfirmationDialogs confirmationDialogs) {
@@ -31,7 +30,7 @@ public class FileManager {
 
 
     public boolean saveFile() {
-        File file = new File(filePath);
+        File file = new File(Constants.FILE_PATH_NAME);
 
         if (file.exists() && !confirmationDialogs.overwriteConfirmationDialog()) {
             return false; // If user chooses not to overwrite, exit
@@ -41,7 +40,7 @@ public class FileManager {
     }
 
     void saveFileLogic() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Constants.FILE_PATH_NAME))) {
             for (Rectangle[] row : whiteboard.getIndividualSquares()) {
                 for (Rectangle square : row) {
                     if (square.isFilled()) {
@@ -56,7 +55,7 @@ public class FileManager {
     }
 
     public void loadFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("resources/image.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Constants.FILE_PATH_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("Rectangle")) {

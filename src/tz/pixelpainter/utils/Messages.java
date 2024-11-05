@@ -1,5 +1,8 @@
 package tz.pixelpainter.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Messages {
 
     public void instructionsTable() {
@@ -29,12 +32,12 @@ public class Messages {
         return "Image Saved!";
     }
 
-    public String imageLoaded() {
-        return "Image Loaded!";
+    public void imageLoaded() {
+        log.info("Image Loaded!");
     }
 
     public void featureUnavailable() {
-        System.out.println("FEATURE IS NOT YET AVAILABLE.");
+        log.info("FEATURE IS NOT YET AVAILABLE.");
     }
 
     public String pngExported() {
@@ -50,7 +53,7 @@ public class Messages {
     }
 
     public void noImageAvailableToLoad() {
-        System.out.println("No image available to load");
+        log.error("No image available to load");
     }
 
     public String keyBindsMessage() {
